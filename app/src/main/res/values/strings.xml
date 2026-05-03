@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Tiki-Taka</string>
+    <string name="app_slogan">Resultados y noticias de fútbol en tiempo real</string>
+
+    <!-- Login -->
+    <string name="login_title">Iniciar sesión</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="register_button">Registrarse</string>
+    <string name="guest_button">Entrar como invitado</string>
+    <string name="no_account">¿No tienes cuenta?</string>
+
+    <!-- Resultados -->
+    <string name="results_title">Resultados</string>
+    <string name="live_matches">En directo</string>
+    <string name="upcoming_matches">Próximos</string>
+    <string name="finished_matches">Finalizados</string>
+    <string name="no_matches">No hay partidos disponibles</string>
+
+    <!-- Detalle Partido -->
+    <string name="match_details">Detalles del Partido</string>
+    <string name="events">Eventos</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="possession">Posesión</string>
+    <string name="shots_on_target">Tiros a puerta</string>
+    <string name="yellow_cards">Tarjetas amarillas</string>
+    <string name="red_cards">Tarjetas rojas</string>
+
+    <!-- Noticias -->
+    <string name="news_title">Noticias</string>
+    <string name="read_more">Leer más</string>
+
+    <!-- Perfil -->
+    <string name="profile_title">Perfil</string>
+    <string name="preferences">Preferencias</string>
+    <string name="favorite_team">Equipo favorito</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <!-- Mensajes -->
+    <string name="login_success">Inicio de sesión exitoso</string>
+    <string name="login_error">Error al iniciar sesión</string>
+    <string name="empty_fields">Por favor completa todos los campos</string>
+
+    <!-- General -->
+    <string name="loading">Cargando...</string>
+    <string name="error">Error</string>
+</resources>

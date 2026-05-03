@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Tiki-Taka</string>
+    <string name="app_slogan">Real-time football results and news</string>
+
+    <!-- Login -->
+    <string name="login_title">Sign in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_button">Sign in</string>
+    <string name="register_button">Sign up</string>
+    <string name="guest_button">Enter as guest</string>
+    <string name="no_account">Don\'t have an account?</string>
+
+    <!-- Resultados -->
+    <string name="results_title">Results</string>
+    <string name="live_matches">Live</string>
+    <string name="upcoming_matches">Upcoming</string>
+    <string name="finished_matches">Finished</string>
+    <string name="no_matches">No matches available</string>
+
+    <!-- Detalle Partido -->
+    <string name="match_details">Match Details</string>
+    <string name="events">Events</string>
+    <string name="statistics">Statistics</string>
+    <string name="possession">Possession</string>
+    <string name="shots_on_target">Shots on target</string>
+    <string name="yellow_cards">Yellow cards</string>
+    <string name="red_cards">Red cards</string>
+
+    <!-- Noticias -->
+    <string name="news_title">News</string>
+    <string name="read_more">Read more</string>
+
+    <!-- Perfil -->
+    <string name="profile_title">Profile</string>
+    <string name="preferences">Preferences</string>
+    <string name="favorite_team">Favorite team</string>
+    <string name="notifications">Notifications</string>
+    <string name="logout">Sign out</string>
+
+    <!-- Mensajes -->
+    <string name="login_success">Login successful</string>
+    <string name="login_error">Login error</string>
+    <string name="empty_fields">Please fill all fields</string>
+
+    <!-- General -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+</resources>
