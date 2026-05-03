@@ -174,11 +174,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        SharedPreferences sharedPreferences = getSharedPreferences("TikiTakaPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-
+        SessionManager.cerrarSesion(this);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

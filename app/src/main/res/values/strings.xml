@@ -17,7 +17,7 @@
     <string name="results_title">Resultados</string>
     <string name="live_matches">En directo</string>
     <string name="upcoming_matches">Próximos</string>
-    <string name="finished_matches">Finalizados</string>
+    <string name="finished_matches">Finalizado</string>
     <string name="no_matches">No hay partidos disponibles</string>
 
     <!-- Detalle Partido -->
