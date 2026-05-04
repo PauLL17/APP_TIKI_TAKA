@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private PartidosAdapter adapter;
     private List<Partido> todosPartidos;
-    private String filtroActual = "en_vivo";
+    private String filtroActual = Partido.ESTADO_EN_VIVO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFilterButtons() {
-        btnLive.setOnClickListener(v -> filtrarPartidos("en_vivo"));
-        btnUpcoming.setOnClickListener(v -> filtrarPartidos("programado"));
-        btnFinished.setOnClickListener(v -> filtrarPartidos("finalizado"));
+        btnLive.setOnClickListener(v -> filtrarPartidos(Partido.ESTADO_EN_VIVO));
+        btnUpcoming.setOnClickListener(v -> filtrarPartidos(Partido.ESTADO_PROGRAMADO));
+        btnFinished.setOnClickListener(v -> filtrarPartidos(Partido.ESTADO_FINALIZADO));
     }
 
     private void loadPartidos() {
@@ -113,44 +113,61 @@ public class MainActivity extends AppCompatActivity {
     private List<Partido> getDatosPrueba() {
         List<Partido> partidos = new ArrayList<>();
 
-        // Crear equipos de prueba
-        Equipo realMadrid = new Equipo(1, "Real Madrid", "Madrid", "Santiago Bernabéu");
-        Equipo barcelona = new Equipo(2, "FC Barcelona", "Barcelona", "Camp Nou");
-        Equipo atletico = new Equipo(3, "Atlético Madrid", "Madrid", "Metropolitano");
-        Equipo valencia = new Equipo(4, "Valencia CF", "Valencia", "Mestalla");
-        Equipo sevilla = new Equipo(5, "Sevilla FC", "Sevilla", "Sánchez-Pizjuán");
-        Equipo realSociedad = new Equipo(6, "Real Sociedad", "San Sebastián", "Reale Arena");
+        Equipo realMadrid = new Equipo();
+        realMadrid.setId(1L);
+        realMadrid.setNombre("Real Madrid");
 
-        // Partidos EN VIVO
-        Partido p1 = new Partido(1, realMadrid, barcelona, 1, 1, new Date(), "en_vivo", "LaLiga");
+        Equipo barcelona = new Equipo();
+        barcelona.setId(2L);
+        barcelona.setNombre("FC Barcelona");
+
+        Equipo atletico = new Equipo();
+        atletico.setId(3L);
+        atletico.setNombre("Atlético Madrid");
+
+        Equipo valencia = new Equipo();
+        valencia.setId(4L);
+        valencia.setNombre("Valencia CF");
+
+        Partido p1 = new Partido();
+        p1.setId(1L);
+        p1.setEquipoLocal(realMadrid);
+        p1.setEquipoVisitante(barcelona);
+        p1.setGolesLocal(1);
+        p1.setGolesVisitante(1);
+        p1.setEstado(Partido.ESTADO_EN_VIVO);
         p1.setMinutoActual(75);
-        p1.setPosesionLocal(45);
-        p1.setPosesionVisitante(55);
-        p1.setTirosAPuertaLocal(6);
-        p1.setTirosAPuertaVisitante(8);
-        p1.setTarjetasAmarillasLocal(2);
-        p1.setTarjetasAmarillasVisitante(3);
+        p1.setFechaHora("2025-05-15T20:30:00");
         partidos.add(p1);
 
-        Partido p2 = new Partido(2, atletico, valencia, 0, 0, new Date(), "en_vivo", "LaLiga");
+        Partido p2 = new Partido();
+        p2.setId(2L);
+        p2.setEquipoLocal(atletico);
+        p2.setEquipoVisitante(valencia);
+        p2.setGolesLocal(0);
+        p2.setGolesVisitante(0);
+        p2.setEstado(Partido.ESTADO_EN_VIVO);
         p2.setMinutoActual(30);
+        p2.setFechaHora("2025-05-15T18:00:00");
         partidos.add(p2);
 
-        // Partidos PRÓXIMOS
-        Partido p3 = new Partido(3, sevilla, realSociedad, 0, 0, new Date(), "programado", "LaLiga");
+        Partido p3 = new Partido();
+        p3.setId(3L);
+        p3.setEquipoLocal(realMadrid);
+        p3.setEquipoVisitante(atletico);
+        p3.setEstado(Partido.ESTADO_PROGRAMADO);
+        p3.setFechaHora("2025-05-20T21:00:00");
         partidos.add(p3);
 
-        Partido p4 = new Partido(4, barcelona, atletico, 0, 0, new Date(), "programado", "Copa del Rey");
+        Partido p4 = new Partido();
+        p4.setId(4L);
+        p4.setEquipoLocal(barcelona);
+        p4.setEquipoVisitante(valencia);
+        p4.setGolesLocal(3);
+        p4.setGolesVisitante(0);
+        p4.setEstado(Partido.ESTADO_FINALIZADO);
+        p4.setFechaHora("2025-05-14T20:00:00");
         partidos.add(p4);
-
-        // Partidos FINALIZADOS
-        Partido p5 = new Partido(5, realMadrid, atletico, 2, 1, new Date(), "finalizado", "LaLiga");
-        p5.setMinutoActual(90);
-        partidos.add(p5);
-
-        Partido p6 = new Partido(6, barcelona, valencia, 3, 0, new Date(), "finalizado", "LaLiga");
-        p6.setMinutoActual(90);
-        partidos.add(p6);
 
         return partidos;
     }

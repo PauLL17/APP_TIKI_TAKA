@@ -38,9 +38,6 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
     public void onBindViewHolder(@NonNull PartidoViewHolder holder, int position) {
         Partido partido = partidos.get(position);
 
-        // Competición
-        holder.tvCompeticion.setText(partido.getCompeticion());
-
         // Equipos
         holder.tvEquipoLocal.setText(partido.getEquipoLocal().getNombre());
         holder.tvEquipoVisitante.setText(partido.getEquipoVisitante().getNombre());
@@ -50,21 +47,21 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
         int color = 0;
 
         switch (partido.getEstado()) {
-            case "en_vivo":
+            case Partido.ESTADO_EN_VIVO:
                 estado = context.getString(R.string.live_matches).toUpperCase();
                 color = context.getResources().getColor(R.color.match_live);
                 holder.tvMinuto.setVisibility(View.VISIBLE);
                 holder.tvMinuto.setText(partido.getMinutoActual() + "'");
                 holder.tvFechaHora.setVisibility(View.GONE);
                 break;
-            case "programado":
+            case Partido.ESTADO_PROGRAMADO:
                 estado = context.getString(R.string.upcoming_matches).toUpperCase();
                 color = context.getResources().getColor(R.color.match_upcoming);
                 holder.tvMinuto.setVisibility(View.GONE);
                 holder.tvFechaHora.setVisibility(View.VISIBLE);
-                holder.tvFechaHora.setText(timeFormat.format(partido.getFechaHora()));
+                holder.tvFechaHora.setText(partido.getFechaHora());
                 break;
-            case "finalizado":
+            case Partido.ESTADO_FINALIZADO:
                 estado = context.getString(R.string.finished_matches).toUpperCase();
                 color = context.getResources().getColor(R.color.match_finished);
                 holder.tvMinuto.setVisibility(View.GONE);
@@ -77,7 +74,7 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
         holder.tvEstado.setTextColor(color);
 
         // Marcador
-        if ("programado".equals(partido.getEstado())) {
+        if (Partido.ESTADO_PROGRAMADO.equals(partido.getEstado())) {
             holder.tvGolesLocal.setText("-");
             holder.tvGolesVisitante.setText("-");
         } else {
@@ -87,7 +84,7 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetallePartidoActivity.class);
-            intent.putExtra("partido_id", partido.getIdPartido());
+            intent.putExtra("partido_id", partido.getId());
             context.startActivity(intent);
         });
     }

@@ -1,26 +1,24 @@
 package es.pmdm.tikitaka_app;
-public class Equipo {
-    private int idEquipo;
+
+import java.io.Serializable;
+
+public class Equipo implements Serializable {
+    private Long id;
     private String nombre;
     private String ciudad;
     private String estadio;
+    private String escudoUrl;
+    private String entrenador;
+    private Integer anioFundacion;
 
-    public Equipo() {
+    public Equipo() {}
+
+    public Long getId() {
+        return id;
     }
 
-    public Equipo(int idEquipo, String nombre, String ciudad, String estadio) {
-        this.idEquipo = idEquipo;
-        this.nombre = nombre;
-        this.ciudad = ciudad;
-        this.estadio = estadio;
-    }
-
-    public int getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(int idEquipo) {
-        this.idEquipo = idEquipo;
+    public void setId(Long id){
+        this.id = id;
     }
 
     public String getNombre() {
@@ -47,4 +45,27 @@ public class Equipo {
         this.estadio = estadio;
     }
 
+    public String getEscudoUrl() {
+        return escudoUrl;
+    }
+
+    public void setEscudoUrl(String escudoUrl) {
+        this.escudoUrl = escudoUrl;
+    }
+
+    public String getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(String entrenador){
+        this.entrenador = entrenador;
+    }
+
+    public Integer getAnioFundacion() {
+        return anioFundacion;
+    }
+
+    public void setAnioFundacion(Integer anioFundacion) {
+        this.anioFundacion = anioFundacion;
+    }
 }

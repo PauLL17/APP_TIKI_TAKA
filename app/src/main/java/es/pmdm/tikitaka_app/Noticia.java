@@ -1,30 +1,22 @@
 package es.pmdm.tikitaka_app;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Noticia {
-    private int idNoticia;
+public class Noticia implements Serializable {
+    private Long id;
     private String titulo;
     private String contenido;
-    private Equipo equipoRelacionado;
-    private Date fechaPublicacion;
+    private String fechaPublicacion;
+    private Long equipoId;
 
-    public Noticia() {
+    public Noticia() {}
+
+    public Long getId() {
+        return id;
     }
 
-    public Noticia(int idNoticia, String titulo, String contenido, Date fechaPublicacion) {
-        this.idNoticia = idNoticia;
-        this.titulo = titulo;
-        this.contenido = contenido;
-        this.fechaPublicacion = fechaPublicacion;
-    }
-
-    public int getIdNoticia() {
-        return idNoticia;
-    }
-
-    public void setIdNoticia(int idNoticia) {
-        this.idNoticia = idNoticia;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -43,19 +35,19 @@ public class Noticia {
         this.contenido = contenido;
     }
 
-    public Equipo getEquipoRelacionado() {
-        return equipoRelacionado;
-    }
-
-    public void setEquipoRelacionado(Equipo equipoRelacionado) {
-        this.equipoRelacionado = equipoRelacionado;
-    }
-
-    public Date getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 
-    public void setFechaPublicacion(Date fechaPublicacion) {
+    public void setFechaPublicacion(String fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public Long getEquipoId() {
+        return equipoId;
+    }
+
+    public void setEquipoId(Long equipoId) {
+        this.equipoId = equipoId;
     }
 }

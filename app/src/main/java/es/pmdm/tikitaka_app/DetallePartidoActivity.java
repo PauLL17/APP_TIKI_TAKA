@@ -59,35 +59,32 @@ public class DetallePartidoActivity extends AppCompatActivity {
     }
 
     private void loadPartidoData() {
-        int partidoId = getIntent().getIntExtra("partido_id", 0);
+        Equipo realMadrid = new Equipo();
+        realMadrid.setId(1L);
+        realMadrid.setNombre("Real Madrid");
 
-        //datos de prueba
-        Equipo realMadrid = new Equipo(1, "Real Madrid", "Madrid", "Santiago Bernabéu");
-        Equipo barcelona = new Equipo(2, "FC Barcelona", "Barcelona", "Camp Nou");
+        Equipo barcelona = new Equipo();
+        barcelona.setId(2L);
+        barcelona.setNombre("FC Barcelona");
 
-        partido = new Partido(1, realMadrid, barcelona, 1, 1, new Date(), "en_vivo", "LaLiga");
+        partido = new Partido();
+        partido.setId(1L);
+        partido.setEquipoLocal(realMadrid);
+        partido.setEquipoVisitante(barcelona);
+        partido.setGolesLocal(1);
+        partido.setGolesVisitante(1);
+        partido.setEstado(Partido.ESTADO_EN_VIVO);
         partido.setMinutoActual(75);
-        partido.setPosesionLocal(45);
-        partido.setPosesionVisitante(55);
-        partido.setTirosAPuertaLocal(6);
-        partido.setTirosAPuertaVisitante(8);
-        partido.setTarjetasAmarillasLocal(2);
-        partido.setTarjetasAmarillasVisitante(3);
+        partido.setFechaHora("2025-05-15T20:30:00");
     }
 
     private void displayPartidoInfo() {
-        // Competición
-        tvCompeticion.setText(partido.getCompeticion());
-
-        // Equipos
         tvEquipoLocal.setText(partido.getEquipoLocal().getNombre());
         tvEquipoVisitante.setText(partido.getEquipoVisitante().getNombre());
 
-        // Marcador
         tvGolesLocal.setText(String.valueOf(partido.getGolesLocal()));
         tvGolesVisitante.setText(String.valueOf(partido.getGolesVisitante()));
 
-        // Minuto
         if (partido.isEnVivo()) {
             tvMinuto.setText(partido.getMinutoActual() + "'");
         } else if (partido.isFinalizado()) {
@@ -96,16 +93,13 @@ public class DetallePartidoActivity extends AppCompatActivity {
             tvMinuto.setText("--:--");
         }
 
-        // Estadísticas
-        tvPosesionLocal.setText(partido.getPosesionLocal() + "%");
-        tvPosesionVisitante.setText(partido.getPosesionVisitante() + "%");
-
-        tvTirosPuertaLocal.setText(String.valueOf(partido.getTirosAPuertaLocal()));
-        tvTirosPuertaVisitante.setText(String.valueOf(partido.getTirosAPuertaVisitante()));
-
-        tvTarjetasAmarillasLocal.setText(String.valueOf(partido.getTarjetasAmarillasLocal()));
-        tvTarjetasAmarillasVisitante.setText(String.valueOf(partido.getTarjetasAmarillasVisitante()));
-
+        //cargar estadísticas desde Estadistica cuando conecte la API
+        tvPosesionLocal.setText("0%");
+        tvPosesionVisitante.setText("0%");
+        tvTirosPuertaLocal.setText("0");
+        tvTirosPuertaVisitante.setText("0");
+        tvTarjetasAmarillasLocal.setText("0");
+        tvTarjetasAmarillasVisitante.setText("0");
         tvTarjetasRojasLocal.setText("0");
         tvTarjetasRojasVisitante.setText("0");
     }
