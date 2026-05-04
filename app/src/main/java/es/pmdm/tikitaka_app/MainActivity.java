@@ -1,7 +1,6 @@
 package es.pmdm.tikitaka_app;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,8 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class MainActivity extends AppCompatActivity {
 

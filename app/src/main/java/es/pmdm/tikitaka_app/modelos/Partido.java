@@ -1,4 +1,4 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.modelos;
 
 import java.io.Serializable;
 
@@ -18,7 +18,6 @@ public class Partido implements Serializable {
     private Integer golesVisitante;
     private Integer minutoActual;
 
-    // Resueltos en el cliente
     private Equipo equipoLocal;
     private Equipo equipoVisitante;
 

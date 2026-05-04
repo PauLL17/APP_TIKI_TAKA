@@ -1,4 +1,4 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.modelos;
 
 import java.io.Serializable;
 

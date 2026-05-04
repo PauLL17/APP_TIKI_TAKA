@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
-import java.util.Date;
+import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class DetallePartidoActivity extends AppCompatActivity {
 
