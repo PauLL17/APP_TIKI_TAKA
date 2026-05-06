@@ -30,4 +30,8 @@ public class ToastPersonalizado {
     public static void mostrarLargo(Context context, String mensaje) {
         mostrar(context, mensaje, Toast.LENGTH_LONG);
     }
+
+    public static void mostrarError(Context context, String mensaje) {
+        mostrar(context, mensaje, Toast.LENGTH_SHORT);
+    }
 }
