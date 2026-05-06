@@ -48,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         btnGuest.setOnClickListener(v -> loginAsGuest());
 
         tvRegister.setOnClickListener(v -> {
-            ToastPersonalizado.mostrarCorto(this, getString(R.string.coming_soon));
+            Intent intent = new Intent(this, RegistroActivity.class);
+            startActivity(intent);
         });
     }
 

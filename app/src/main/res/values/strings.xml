@@ -12,6 +12,7 @@
     <string name="register_button">Registrarse</string>
     <string name="guest_button">Entrar como invitado</string>
     <string name="no_account">¿No tienes cuenta?</string>
+    <string name="coming_soon">Próximamente</string>
 
     <!-- Resultados -->
     <string name="results_title">Resultados</string>
@@ -41,11 +42,22 @@
     <string name="logout">Cerrar sesión</string>
 
     <!-- Mensajes -->
-    <string name="login_success">Inicio de sesión exitoso</string>
-    <string name="login_error">Error al iniciar sesión</string>
-    <string name="empty_fields">Por favor completa todos los campos</string>
+    <string name="login_success">¡Bienvenido!</string>
+    <string name="login_error">Usuario o contraseña incorrectos</string>
+    <string name="empty_fields">Rellena todos los campos</string>
 
     <!-- General -->
     <string name="loading">Cargando...</string>
     <string name="error">Error</string>
+
+    <!-- Registro -->
+    <string name="register_subtitle">Crea tu cuenta</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_equipo_favorito">Equipo favorito</string>
+    <string name="btn_register">REGISTRARSE</string>
+    <string name="already_have_account">¿Ya tienes cuenta? <b>Inicia sesión</b></string>
+    <string name="register_success">¡Cuenta creada correctamente!</string>
+    <string name="register_error">Error al registrar el usuario</string>
 </resources>
