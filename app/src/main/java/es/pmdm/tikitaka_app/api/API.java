@@ -24,7 +24,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/" + id, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/estado/" + estado, null, token, listener);
     }
@@ -37,7 +36,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/equipo/" + equipoId, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getEnfrentamientos(long equipo1Id, long equipo2Id, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/enfrentamientos/" + equipo1Id + "/" + equipo2Id, null, token, listener);
     }
@@ -76,10 +74,6 @@ public class API {
     }
 
     // JUGADORES
-    public static void getJugadores(String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores", null, token, listener);
-    }
-
     public static void getJugador(long id, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores/" + id, null, token, listener);
     }
@@ -88,7 +82,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores/equipo/" + equipoId, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getJugadoresByEquipoYPosicion(long equipoId, String posicion, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores/equipo/" + equipoId + "/posicion/" + posicion, null, token, listener);
     }
@@ -114,14 +107,8 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/jugador/" + jugadorId, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getGoleadores(String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/goleadores", null, token, listener);
-    }
-
-    //Consulta JPA
-    public static void getGolesByJugadorYPartido(long jugadorId, long partidoId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/jugador/" + jugadorId + "/partido/" + partidoId, null, token, listener);
     }
 
     // TARJETAS
@@ -133,7 +120,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/tarjetas/jugador/" + jugadorId, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getMasTarjetas(String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/tarjetas/mas-tarjetas", null, token, listener);
     }
@@ -187,7 +173,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/noticias/equipo/" + equipoId, null, token, listener);
     }
 
-    //Consulta JPA
     public static void getUltimasNoticias(String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/noticias/ultimas", null, token, listener);
     }
@@ -214,28 +199,15 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/usuarios/" + id, body.toString(), token, listener);
     }
 
-    // JOOQ -- CONSULTAS
-    //Jugadores con nombre de equipo
-    public static void getJugadoresJooq(String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jooq/jugadores", null, token, listener);
-    }
-
-    //Jugadores por equipo con nombre
+    // JOOQ
     public static void getJugadoresByEquipoJooq(long equipoId, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jooq/jugadores/equipo/" + equipoId, null, token, listener);
     }
 
-    //Busqueda avanzada de jugadores
     public static void buscarJugadoresJooq(String nombre, String posicion, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jooq/jugadores/busqueda?nombre=" + nombre + "&posicion=" + posicion, null, token, listener);
     }
 
-    //Goles con detalles
-    public static void getGolesJooq(String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jooq/goles", null, token, listener);
-    }
-
-    //Partidos ordenados por goles
     public static void getPartidosMasGolesJooq(String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jooq/partidos/mas-goles", null, token, listener);
     }
