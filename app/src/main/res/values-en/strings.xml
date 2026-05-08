@@ -21,15 +21,6 @@
     <string name="finished_matches">Finished</string>
     <string name="no_matches">No matches available</string>
 
-    <!-- Detalle Partido -->
-    <string name="match_details">Match Details</string>
-    <string name="events">Events</string>
-    <string name="statistics">Statistics</string>
-    <string name="possession">Possession</string>
-    <string name="shots_on_target">Shots on target</string>
-    <string name="yellow_cards">Yellow cards</string>
-    <string name="red_cards">Red cards</string>
-
     <!-- Noticias -->
     <string name="news_title">News</string>
     <string name="read_more">Read more</string>
@@ -61,4 +52,14 @@
     <string name="already_have_account">Already have an account? <b>Sign in</b></string>
     <string name="register_success">Account created successfully!</string>
     <string name="register_error">Error creating account</string>
+
+    <!-- Detalle Partido -->
+    <string name="estadisticas">Statistics</string>
+    <string name="eventos">Events</string>
+    <string name="alineacion">Line-up</string>
+    <string name="posesion">Possession</string>
+    <string name="tiros">Shots</string>
+    <string name="tiros_puerta">Shots on target</string>
+    <string name="corners">Corners</string>
+    <string name="faltas">Fouls</string>
 </resources>

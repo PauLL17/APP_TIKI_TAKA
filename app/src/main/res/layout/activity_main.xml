@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/live_matches"
-            android:backgroundTint="@color/match_live"
+            android:backgroundTint="@color/partido_en_vivo"
             android:textColor="@color/text_white"
             android:layout_marginEnd="4dp"/>
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/upcoming_matches"
-            android:backgroundTint="@color/match_upcoming"
+            android:backgroundTint="@color/partido_programado"
             android:textColor="@color/text_white"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"/>
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/finished_matches"
-            android:backgroundTint="@color/match_finished"
+            android:backgroundTint="@color/partido_finalizado"
             android:textColor="@color/text_white"
             android:layout_marginStart="4dp"/>
     </LinearLayout>

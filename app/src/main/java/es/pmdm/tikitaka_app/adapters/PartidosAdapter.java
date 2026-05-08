@@ -1,4 +1,4 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import es.pmdm.tikitaka_app.DetallePartidoActivity;
+import es.pmdm.tikitaka_app.R;
 import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.PartidoViewHolder> {
@@ -51,21 +53,21 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
         switch (partido.getEstado()) {
             case Partido.ESTADO_EN_VIVO:
                 estado = context.getString(R.string.live_matches).toUpperCase();
-                color = context.getResources().getColor(R.color.match_live);
+                color = context.getResources().getColor(R.color.partido_en_vivo);
                 holder.tvMinuto.setVisibility(View.VISIBLE);
                 holder.tvMinuto.setText(partido.getMinutoActual() + "'");
                 holder.tvFechaHora.setVisibility(View.GONE);
                 break;
             case Partido.ESTADO_PROGRAMADO:
                 estado = context.getString(R.string.upcoming_matches).toUpperCase();
-                color = context.getResources().getColor(R.color.match_upcoming);
+                color = context.getResources().getColor(R.color.partido_programado);
                 holder.tvMinuto.setVisibility(View.GONE);
                 holder.tvFechaHora.setVisibility(View.VISIBLE);
                 holder.tvFechaHora.setText(partido.getFechaHora());
                 break;
             case Partido.ESTADO_FINALIZADO:
                 estado = context.getString(R.string.finished_matches).toUpperCase();
-                color = context.getResources().getColor(R.color.match_finished);
+                color = context.getResources().getColor(R.color.partido_finalizado);
                 holder.tvMinuto.setVisibility(View.GONE);
                 holder.tvFechaHora.setVisibility(View.VISIBLE);
                 holder.tvFechaHora.setText("FT");

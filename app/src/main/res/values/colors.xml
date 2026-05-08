@@ -16,11 +16,11 @@
     <color name="text_white">#FFFFFF</color>
 
     <!-- Estados del partido -->
-    <color name="match_live">#FF5252</color>
-    <color name="match_upcoming">#2196F3</color>
-    <color name="match_finished">#9E9E9E</color>
+    <color name="partido_en_vivo">#FF5252</color>
+    <color name="partido_programado">#2196F3</color>
+    <color name="partido_finalizado">#9E9E9E</color>
 
     <!-- Tarjetas -->
-    <color name="yellow_card">#FDD835</color>
-    <color name="red_card">#D32F2F</color>
+    <color name="tarjeta_amarilla">#FDD835</color>
+    <color name="tarjeta_roja">#D32F2F</color>
 </resources>
