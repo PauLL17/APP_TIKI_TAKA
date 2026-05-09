@@ -80,4 +80,7 @@
     <string name="hint_ciudad">Ciudad</string>
     <string name="hint_estadio">Estadio</string>
     <string name="hint_entrenador">Entrenador</string>
+
+    <string name="permiso_notificaciones_denegado">Permiso de notificaciones denegado</string>
+
 </resources>

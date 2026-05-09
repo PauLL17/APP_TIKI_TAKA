@@ -164,6 +164,12 @@ public class MainActivity extends AppCompatActivity {
             logout();
             return true;
         }
+
+        if (item.getItemId() == R.id.action_equipos) {
+            Intent intent = new Intent(this, EquiposActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

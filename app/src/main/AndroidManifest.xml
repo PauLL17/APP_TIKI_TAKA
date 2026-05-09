@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".EquiposActivity"
-            android:exported="false" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
@@ -39,5 +39,6 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
     </application>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
 </manifest>

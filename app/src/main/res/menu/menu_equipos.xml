@@ -3,12 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_logout"
-        android:title="Cerrar sesión"
+        android:id="@+id/action_aniadir_equipo"
+        android:title="@string/aniadir_equipo"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_equipos"
-        android:title="@string/equipos"
-        app:showAsAction="never"/>
 </menu>
