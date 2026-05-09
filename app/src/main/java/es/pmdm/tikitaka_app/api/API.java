@@ -24,7 +24,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/" + id, null, token, listener);
     }
 
-    public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) {
+    public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/estado/" + estado, null, token, listener);
     }
 
@@ -36,7 +36,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/equipo/" + equipoId, null, token, listener);
     }
 
-    public static void getEnfrentamientos(long equipo1Id, long equipo2Id, String token, UtilREST.OnResponseListener listener) {
+    public static void getEnfrentamientos(long equipo1Id, long equipo2Id, String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/enfrentamientos/" + equipo1Id + "/" + equipo2Id, null, token, listener);
     }
 
@@ -82,7 +82,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores/equipo/" + equipoId, null, token, listener);
     }
 
-    public static void getJugadoresByEquipoYPosicion(long equipoId, String posicion, String token, UtilREST.OnResponseListener listener) {
+    public static void getJugadoresByEquipoYPosicion(long equipoId, String posicion, String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jugadores/equipo/" + equipoId + "/posicion/" + posicion, null, token, listener);
     }
 
@@ -107,7 +107,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/jugador/" + jugadorId, null, token, listener);
     }
 
-    public static void getGoleadores(String token, UtilREST.OnResponseListener listener) {
+    public static void getGoleadores(String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/goleadores", null, token, listener);
     }
 
@@ -120,7 +120,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/tarjetas/jugador/" + jugadorId, null, token, listener);
     }
 
-    public static void getMasTarjetas(String token, UtilREST.OnResponseListener listener) {
+    public static void getMasTarjetas(String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/tarjetas/mas-tarjetas", null, token, listener);
     }
 
@@ -173,7 +173,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/noticias/equipo/" + equipoId, null, token, listener);
     }
 
-    public static void getUltimasNoticias(String token, UtilREST.OnResponseListener listener) {
+    public static void getUltimasNoticias(String token, UtilREST.OnResponseListener listener) { //Consulta JPA
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/noticias/ultimas", null, token, listener);
     }
 

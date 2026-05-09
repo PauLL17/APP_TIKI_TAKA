@@ -63,4 +63,21 @@
     <string name="corners">Corners</string>
     <string name="faltas">Fouls</string>
     <string name="detalle_partido">Match Details</string>
+
+    <!-- Equipos -->
+    <string name="equipos">Teams</string>
+    <string name="no_equipos">No teams available</string>
+    <string name="aniadir_equipo">Add team</string>
+    <string name="eliminar_equipo">Delete team</string>
+    <string name="ver_detalle">View detail</string>
+    <string name="dialogo_eliminar_equipo_titulo">Delete team</string>
+    <string name="dialogo_eliminar_equipo_mensaje">Are you sure you want to delete this team?</string>
+    <string name="dialogo_si">Yes</string>
+    <string name="dialogo_no">No</string>
+    <string name="equipo_eliminado">Team deleted successfully</string>
+    <string name="equipo_creado">Team created successfully</string>
+    <string name="hint_nombre_equipo">Team name</string>
+    <string name="hint_ciudad">City</string>
+    <string name="hint_estadio">Stadium</string>
+    <string name="hint_entrenador">Coach</string>
 </resources>
