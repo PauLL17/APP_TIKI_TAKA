@@ -62,4 +62,5 @@
     <string name="tiros_puerta">Shots on target</string>
     <string name="corners">Corners</string>
     <string name="faltas">Fouls</string>
+    <string name="detalle_partido">Match Details</string>
 </resources>

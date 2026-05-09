@@ -62,4 +62,5 @@
     <string name="tiros_puerta">Tiros a puerta</string>
     <string name="corners">Corners</string>
     <string name="faltas">Faltas</string>
+    <string name="detalle_partido">Detalle del partido</string>
 </resources>
