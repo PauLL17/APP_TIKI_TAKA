@@ -85,9 +85,9 @@ public class EquiposActivity extends AppCompatActivity {
 
         lvEquipos.setOnItemClickListener((parent, view, position, id) -> {
             Equipo equipo = listaEquipos.get(position);
-            //Intent intent = new Intent(this, DetalleEquipoActivity.class);
-            //intent.putExtra("equipo_id", equipo.getId());
-            //startActivity(intent);
+            Intent intent = new Intent(this, DetalleEquipoActivity.class);
+            intent.putExtra("equipo_id", equipo.getId());
+            startActivity(intent);
         });
 
         registerForContextMenu(lvEquipos);

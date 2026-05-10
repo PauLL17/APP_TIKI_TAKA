@@ -83,4 +83,27 @@
 
     <string name="permiso_notificaciones_denegado">Notifications permission denied</string>
 
+    <!-- Detalle Equipo -->
+    <string name="detalle_equipo">Team detail</string>
+    <string name="plantilla">Squad</string>
+    <string name="editar_equipo">Edit team</string>
+    <string name="equipo_actualizado">Team updated successfully</string>
+    <string name="todas_posiciones">All positions</string>
+    <string name="anio_fundacion">Founded in: %d</string>
+    <string name="ciudad_label">City: %s</string>
+    <string name="estadio_label">Stadium: %s</string>
+    <string name="entrenador_label">Coach: %s</string>
+
+    <!-- Jugador -->
+    <string name="aniadir_jugador">Add player</string>
+    <string name="eliminar_jugador">Delete player</string>
+    <string name="jugador_eliminado">Player deleted successfully</string>
+    <string name="jugador_creado">Player created successfully</string>
+    <string name="dialogo_eliminar_jugador_titulo">Delete player</string>
+    <string name="dialogo_eliminar_jugador_mensaje">Are you sure you want to delete this player?</string>
+    <string name="hint_nombre_jugador">Name</string>
+    <string name="hint_apellidos">Surnames</string>
+    <string name="hint_dorsal">Shirt number</string>
+    <string name="hint_nacionalidad">Nationality</string>
+    <string name="posicion">Position</string>
 </resources>

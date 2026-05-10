@@ -83,4 +83,28 @@
 
     <string name="permiso_notificaciones_denegado">Permiso de notificaciones denegado</string>
 
+
+    <!-- DetalleEquipo -->
+    <string name="detalle_equipo">Detalle del equipo</string>
+    <string name="plantilla">Plantilla</string>
+    <string name="editar_equipo">Editar equipo</string>
+    <string name="equipo_actualizado">Equipo actualizado correctamente</string>
+    <string name="todas_posiciones">Todas las posiciones</string>
+    <string name="anio_fundacion">Fundado en: %d</string>
+    <string name="ciudad_label">Ciudad: %s</string>
+    <string name="estadio_label">Estadio: %s</string>
+    <string name="entrenador_label">Entrenador: %s</string>
+
+    <!-- Jugador -->
+    <string name="aniadir_jugador">Añadir jugador</string>
+    <string name="eliminar_jugador">Eliminar jugador</string>
+    <string name="jugador_eliminado">Jugador eliminado correctamente</string>
+    <string name="jugador_creado">Jugador creado correctamente</string>
+    <string name="dialogo_eliminar_jugador_titulo">Eliminar jugador</string>
+    <string name="dialogo_eliminar_jugador_mensaje">¿Estás seguro de que quieres eliminar este jugador?</string>
+    <string name="hint_nombre_jugador">Nombre</string>
+    <string name="hint_apellidos">Apellidos</string>
+    <string name="hint_dorsal">Dorsal</string>
+    <string name="hint_nacionalidad">Nacionalidad</string>
+    <string name="posicion">Posición</string>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_ver_jugador"
+        android:title="@string/ver_detalle"/>
+
+    <item
+        android:id="@+id/action_eliminar_jugador"
+        android:title="@string/eliminar_jugador"/>
+
+</menu>
