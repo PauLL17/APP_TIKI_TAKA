@@ -45,7 +45,7 @@ public class API {
     }
 
     public static void putPartido(long id, JSONObject body, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/partidos/" + id, body.toString(), token, listener);
+        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/partidos", body.toString(), token, listener);
     }
 
     public static void deletePartido(long id, String token, UtilREST.OnResponseListener listener) {
@@ -66,7 +66,7 @@ public class API {
     }
 
     public static void putEquipo(long id, JSONObject body, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/equipos/" + id, body.toString(), token, listener);
+        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/equipos", body.toString(), token, listener);
     }
 
     public static void deleteEquipo(long id, String token, UtilREST.OnResponseListener listener) {
@@ -91,9 +91,8 @@ public class API {
     }
 
     public static void putJugador(long id, JSONObject body, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/jugadores/" + id, body.toString(), token, listener);
+        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/jugadores", body.toString(), token, listener);
     }
-
     public static void deleteJugador(long id, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.DELETE, BASE_URL + "api/jugadores/" + id, null, token, listener);
     }
@@ -196,7 +195,7 @@ public class API {
     }
 
     public static void putUsuario(long id, JSONObject body, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/usuarios/" + id, body.toString(), token, listener);
+        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/usuarios", body.toString(), token, listener);
     }
 
     // JOOQ
