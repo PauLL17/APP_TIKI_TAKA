@@ -168,13 +168,12 @@ public class DetalleEquipoActivity extends AppCompatActivity {
     private void mostrarJugadores() {
         adapter = new JugadoresAdapter(this, listaJugadores);
         lvJugadores.setAdapter(adapter);
-        registerForContextMenu(lvJugadores);
 
         lvJugadores.setOnItemClickListener((parent, view, position, id) -> {
             Jugador jugador = listaJugadores.get(position);
-           /* Intent intent = new Intent(this, DetalleJugadorActivity.class);
+            Intent intent = new Intent(this, DetalleJugadorActivity.class);
             intent.putExtra("jugador_id", jugador.getId());
-            startActivity(intent); */
+            startActivity(intent);
         });
     }
 
@@ -200,32 +199,6 @@ public class DetalleEquipoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getMenuInflater().inflate(R.menu.menu_contextual_jugadores, menu);
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        if (item.getItemId() == R.id.action_ver_jugador) {
-            Jugador jugador = listaJugadores.get(info.position);
-            /* Intent intent = new Intent(this, DetalleJugadorActivity.class);
-            intent.putExtra("jugador_id", jugador.getId());
-            startActivity(intent); */
-            return true;
-        }
-        if (item.getItemId() == R.id.action_eliminar_jugador) {
-            mostrarDialogoEliminarJugador(info.position);
-            return true;
-        }
-        return super.onContextItemSelected(item);
-    }
-
     private void mostrarDialogoEditarEquipo() {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.dialogo_equipo, null);
@@ -400,5 +373,11 @@ public class DetalleEquipoActivity extends AppCompatActivity {
                         getString(R.string.error_cargar_datos));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarJugadores();
     }
 }

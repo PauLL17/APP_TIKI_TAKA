@@ -107,4 +107,15 @@
     <string name="hint_dorsal">Dorsal</string>
     <string name="hint_nacionalidad">Nacionalidad</string>
     <string name="posicion">Posición</string>
+
+    <!-- Detalle Jugador-->
+    <string name="detalle_jugador">Detalle del jugador</string>
+    <string name="editar_jugador">Editar</string>
+    <string name="goles">Goles</string>
+    <string name="amarillas">Amarillas</string>
+    <string name="rojas">Rojas</string>
+    <string name="dorsal_label">Dorsal: %d</string>
+    <string name="posicion_label">Posición: %s</string>
+    <string name="nacionalidad_label">Nacionalidad: %s</string>
+    <string name="jugador_actualizado">Jugador actualizado correctamente</string>
 </resources>

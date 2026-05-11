@@ -106,4 +106,15 @@
     <string name="hint_dorsal">Shirt number</string>
     <string name="hint_nacionalidad">Nationality</string>
     <string name="posicion">Position</string>
+
+    <!-- Detalle Jugador -->
+    <string name="detalle_jugador">Player detail</string>
+    <string name="editar_jugador">Edit</string>
+    <string name="goles">Goals</string>
+    <string name="amarillas">Yellows</string>
+    <string name="rojas">Reds</string>
+    <string name="dorsal_label">Shirt number: %d</string>
+    <string name="posicion_label">Position: %s</string>
+    <string name="nacionalidad_label">Nationality: %s</string>
+    <string name="jugador_actualizado">Player updated successfully</string>
 </resources>

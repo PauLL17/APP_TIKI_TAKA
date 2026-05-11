@@ -15,8 +15,11 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetalleJugadorActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"  />
+        <activity
             android:name=".DetalleEquipoActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".EquiposActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
