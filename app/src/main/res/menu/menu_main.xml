@@ -11,4 +11,9 @@
         android:id="@+id/action_equipos"
         android:title="@string/equipos"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_noticias"
+        android:title="@string/noticias"
+        app:showAsAction="never"/>
 </menu>

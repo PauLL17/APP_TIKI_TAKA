@@ -117,4 +117,16 @@
     <string name="posicion_label">Position: %s</string>
     <string name="nacionalidad_label">Nationality: %s</string>
     <string name="jugador_actualizado">Player updated successfully</string>
+
+    <!-- Noticias -->
+    <string name="noticias">News</string>
+    <string name="no_noticias">No news available</string>
+    <string name="mi_equipo">My team</string>
+    <string name="todas">All</string>
+    <string name="noticia_eliminada">News deleted successfully</string>
+    <string name="dialogo_eliminar_noticia_titulo">Delete news</string>
+    <string name="dialogo_eliminar_noticia_mensaje">Are you sure you want to delete this news?</string>
+    <string name="eliminar_noticia">Delete news</string>
+    <string name="no_equipo_favorito">You have no favourite team configured</string>
+    <string name="detalle_noticia">News detail</string>
 </resources>
