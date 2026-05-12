@@ -1,7 +1,5 @@
 package es.pmdm.tikitaka_app;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -22,7 +20,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import org.json.JSONObject;
@@ -38,9 +35,6 @@ import es.pmdm.tikitaka_app.modelos.Equipo;
 
 public class EquiposActivity extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = "equipos_channel";
-    private static final int NOTIF_CREAR = 1;
-    private static final int NOTIF_ELIMINAR = 2;
     private static final int CODIGO_PERMISO_NOTIFICACIONES = 100;
 
     private Toolbar toolbar;
@@ -50,6 +44,7 @@ public class EquiposActivity extends AppCompatActivity {
 
     private EquiposAdapter adapter;
     private List<Equipo> listaEquipos = new ArrayList<>();
+    private NotificationHelper notificationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +54,7 @@ public class EquiposActivity extends AppCompatActivity {
         initViews();
         setupToolbar();
         setupListView();
-        crearCanalNotificaciones();
+        notificationHelper = new NotificationHelper(this);
         pedirPermisoNotificaciones();
         cargarEquipos();
     }
@@ -207,7 +202,10 @@ public class EquiposActivity extends AppCompatActivity {
                 public void onSuccess(UtilREST.Response r) {
                     ToastPersonalizado.mostrarCorto(EquiposActivity.this,
                             getString(R.string.equipo_creado));
-                    mostrarNotificacionCreado(nombre);
+                    notificationHelper.mostrarNotificacion(
+                            getString(R.string.equipo_creado),
+                            nombre,
+                            NotificationHelper.NOTIF_CREAR);
                     cargarEquipos();
                 }
 
@@ -245,7 +243,10 @@ public class EquiposActivity extends AppCompatActivity {
             public void onSuccess(UtilREST.Response r) {
                 ToastPersonalizado.mostrarCorto(EquiposActivity.this,
                         getString(R.string.equipo_eliminado));
-                mostrarNotificacionEliminado(equipo.getNombre());
+                notificationHelper.mostrarNotificacion(
+                        getString(R.string.equipo_eliminado),
+                        equipo.getNombre(),
+                        NotificationHelper.NOTIF_ELIMINAR);
                 listaEquipos.remove(position);
                 adapter = new EquiposAdapter(EquiposActivity.this, listaEquipos);
                 lvEquipos.setAdapter(adapter);
@@ -257,42 +258,6 @@ public class EquiposActivity extends AppCompatActivity {
                         getString(R.string.error_cargar_datos));
             }
         });
-    }
-
-    private void crearCanalNotificaciones() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    getString(R.string.equipos),
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-    }
-
-    private void mostrarNotificacionCreado(String nombre) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.ic_input_add)
-                .setContentTitle(getString(R.string.equipo_creado))
-                .setContentText(nombre)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
-
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        manager.notify(NOTIF_CREAR, builder.build());
-    }
-
-    private void mostrarNotificacionEliminado(String nombre) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle(getString(R.string.equipo_eliminado))
-                .setContentText(nombre)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
-
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        manager.notify(NOTIF_ELIMINAR, builder.build());
     }
 
     private void pedirPermisoNotificaciones() {
