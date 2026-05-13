@@ -19,6 +19,7 @@ import es.pmdm.tikitaka_app.modelos.Jugador;
 import es.pmdm.tikitaka_app.modelos.Noticia;
 import es.pmdm.tikitaka_app.modelos.Notificacion;
 import es.pmdm.tikitaka_app.modelos.Partido;
+import es.pmdm.tikitaka_app.modelos.RankingItem;
 import es.pmdm.tikitaka_app.modelos.Tarjeta;
 import es.pmdm.tikitaka_app.modelos.Usuario;
 
@@ -397,5 +398,38 @@ public class UtilJSONParser {
         return notificacion;
     }
 
+    // GOLEADORES
+    public static List<RankingItem> parseGoleadores(String strJson) {
+        List<RankingItem> list = new ArrayList<>();
+        try {
+            JSONArray array = new JSONArray(strJson);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject json = array.getJSONObject(i);
+                String nombre = json.optString("nombre", "") + " " + json.optString("apellidos", "");
+                int total = (int) json.optLong("total", 0);
+                list.add(new RankingItem(nombre.trim(), total));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //MAS TARJETAS
+    public static List<RankingItem> parseMasTarjetas(String strJson) {
+        List<RankingItem> list = new ArrayList<>();
+        try {
+            JSONArray array = new JSONArray(strJson);
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject json = array.getJSONObject(i);
+                String nombre = json.optString("nombre", "") + " " + json.optString("apellidos", "");
+                int total = (int) json.optLong("total", 0);
+                list.add(new RankingItem(nombre.trim(), total));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     private UtilJSONParser() { throw new AssertionError(); }
 }
