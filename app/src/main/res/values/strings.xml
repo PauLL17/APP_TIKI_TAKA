@@ -131,4 +131,9 @@
     <string name="no_equipo_favorito">No tienes equipo favorito configurado</string>
     <string name="detalle_noticia">Detalle de la noticia</string>
 
+    <!-- Estadisticas -->
+    <string name="estadisticas_title">Estadísticas</string>
+    <string name="ranking_goleadores">Ranking goleadores</string>
+    <string name="ranking_tarjetas">Más amonestados</string>
+    <string name="ranking_partidos">Partidos con más goles</string>
 </resources>

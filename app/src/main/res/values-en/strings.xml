@@ -129,4 +129,10 @@
     <string name="eliminar_noticia">Delete news</string>
     <string name="no_equipo_favorito">You have no favourite team configured</string>
     <string name="detalle_noticia">News detail</string>
+
+    <!-- Estadisticas -->
+    <string name="estadisticas_title">Statistics</string>
+    <string name="ranking_goleadores">Top scorers</string>
+    <string name="ranking_tarjetas">Most booked</string>
+    <string name="ranking_partidos">Highest scoring matches</string>
 </resources>

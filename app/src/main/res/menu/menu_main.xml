@@ -16,4 +16,9 @@
         android:id="@+id/action_noticias"
         android:title="@string/noticias"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_estadisticas"
+        android:title="@string/estadisticas_title"
+        app:showAsAction="never"/>
 </menu>
