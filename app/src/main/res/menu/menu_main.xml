@@ -21,4 +21,9 @@
         android:id="@+id/action_estadisticas"
         android:title="@string/estadisticas_title"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_perfil"
+        android:title="@string/perfil"
+        app:showAsAction="never"/>
 </menu>

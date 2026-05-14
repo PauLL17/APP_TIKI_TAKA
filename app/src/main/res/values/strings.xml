@@ -136,4 +136,12 @@
     <string name="ranking_goleadores">Ranking goleadores</string>
     <string name="ranking_tarjetas">Más amonestados</string>
     <string name="ranking_partidos">Partidos con más goles</string>
+
+    <!-- Perfil -->
+    <string name="perfil">Mi perfil</string>
+    <string name="equipo_favorito">Equipo favorito</string>
+    <string name="guardar">Guardar</string>
+    <string name="perfil_actualizado">Perfil actualizado correctamente</string>
+    <string name="nombre_usuario_label">Usuario: %s</string>
+    <string name="email_label">Email: %s</string>
 </resources>

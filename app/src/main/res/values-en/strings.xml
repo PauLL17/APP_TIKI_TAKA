@@ -135,4 +135,12 @@
     <string name="ranking_goleadores">Top scorers</string>
     <string name="ranking_tarjetas">Most booked</string>
     <string name="ranking_partidos">Highest scoring matches</string>
+
+    <!-- Perfil -->
+    <string name="perfil">My profile</string>
+    <string name="equipo_favorito">Favourite team</string>
+    <string name="guardar">Save</string>
+    <string name="perfil_actualizado">Profile updated successfully</string>
+    <string name="nombre_usuario_label">Username: %s</string>
+    <string name="email_label">Email: %s</string>
 </resources>
