@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONObject;
 
@@ -35,6 +38,7 @@ public class DetalleEquipoActivity extends BaseActivity {
     private TextView tvNombre, tvCiudad, tvEstadio, tvEntrenador, tvAnio;
     private Spinner spinnerPosicion;
     private ListView lvJugadores;
+    private ImageView ivEscudo;
 
     private long equipoId;
     private Equipo equipo;
@@ -62,6 +66,7 @@ public class DetalleEquipoActivity extends BaseActivity {
         tvAnio        = findViewById(R.id.tvAnioFundacion);
         spinnerPosicion = findViewById(R.id.spinnerPosicion);
         lvJugadores   = findViewById(R.id.lvJugadores);
+        ivEscudo = findViewById(R.id.ivEscudoEquipo);
     }
 
     private void setupToolbar() {
@@ -127,6 +132,10 @@ public class DetalleEquipoActivity extends BaseActivity {
         tvEstadio.setText(getString(R.string.estadio_label, equipo.getEstadio()));
         tvEntrenador.setText(getString(R.string.entrenador_label, equipo.getEntrenador()));
         tvAnio.setText(getString(R.string.anio_fundacion, equipo.getAnioFundacion()));
+
+        Glide.with(this)
+                .load(equipo.getEscudoUrl())
+                .into(ivEscudo);
     }
 
     private void cargarJugadores() {
@@ -207,11 +216,13 @@ public class DetalleEquipoActivity extends BaseActivity {
         EditText etCiudad     = dialogView.findViewById(R.id.etCiudadEquipo);
         EditText etEstadio    = dialogView.findViewById(R.id.etEstadioEquipo);
         EditText etEntrenador = dialogView.findViewById(R.id.etEntrenadorEquipo);
+        EditText etEscudoUrl  = dialogView.findViewById(R.id.etEscudoUrl);
 
         etNombre.setText(equipo.getNombre());
         etCiudad.setText(equipo.getCiudad());
         etEstadio.setText(equipo.getEstadio());
         etEntrenador.setText(equipo.getEntrenador());
+        etEscudoUrl.setText(equipo.getEscudoUrl());
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.editar_equipo))
@@ -221,13 +232,14 @@ public class DetalleEquipoActivity extends BaseActivity {
                     String ciudad     = etCiudad.getText().toString().trim();
                     String estadio    = etEstadio.getText().toString().trim();
                     String entrenador = etEntrenador.getText().toString().trim();
+                    String escudoUrl  = etEscudoUrl.getText().toString().trim();
 
                     if (nombre.isEmpty() || ciudad.isEmpty()) {
                         ToastPersonalizado.mostrarError(this, getString(R.string.empty_fields));
                         return;
                     }
 
-                    editarEquipo(nombre, ciudad, estadio, entrenador);
+                    editarEquipo(nombre, ciudad, estadio, entrenador, escudoUrl);
                 })
                 .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
                     dialog.dismiss();
@@ -235,7 +247,7 @@ public class DetalleEquipoActivity extends BaseActivity {
                 .show();
     }
 
-    private void editarEquipo(String nombre, String ciudad, String estadio, String entrenador) {
+    private void editarEquipo(String nombre, String ciudad, String estadio, String entrenador, String escudoUrl) {
         String token = SessionManager.getToken(this);
 
         try {
@@ -245,7 +257,7 @@ public class DetalleEquipoActivity extends BaseActivity {
             body.put("ciudad", ciudad);
             body.put("estadio", estadio);
             body.put("entrenador", entrenador);
-            body.put("escudoUrl", equipo.getEscudoUrl());
+            body.put("escudoUrl", escudoUrl);
             body.put("anioFundacion", equipo.getAnioFundacion());
 
             API.putEquipo(equipo.getId(), body, token, new UtilREST.OnResponseListener() {

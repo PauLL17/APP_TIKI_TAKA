@@ -5,14 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
-import java.util.Locale;
 
 import es.pmdm.tikitaka_app.DetallePartidoActivity;
 import es.pmdm.tikitaka_app.R;
@@ -22,12 +23,10 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
 
     private List<Partido> partidos;
     private Context context;
-    private SimpleDateFormat timeFormat;
 
     public PartidosAdapter(List<Partido> partidos, Context context) {
         this.partidos = partidos;
-        this.context = context;
-        this.timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        this.context  = context;
     }
 
     @NonNull
@@ -42,11 +41,21 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
     public void onBindViewHolder(@NonNull PartidoViewHolder holder, int position) {
         Partido partido = partidos.get(position);
 
-        // Equipos
         holder.tvEquipoLocal.setText(partido.getEquipoLocal().getNombre());
         holder.tvEquipoVisitante.setText(partido.getEquipoVisitante().getNombre());
 
-        // Estado del partido
+        if (partido.getEquipoLocal() != null) {
+            Glide.with(context)
+                    .load(partido.getEquipoLocal().getEscudoUrl())
+                    .into(holder.ivEscudoLocal);
+        }
+
+        if (partido.getEquipoVisitante() != null) {
+            Glide.with(context)
+                    .load(partido.getEquipoVisitante().getEscudoUrl())
+                    .into(holder.ivEscudoVisitante);
+        }
+
         String estado = "";
         int color = 0;
 
@@ -77,7 +86,6 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
         holder.tvEstado.setText(estado);
         holder.tvEstado.setTextColor(color);
 
-        // Marcador
         if (Partido.ESTADO_PROGRAMADO.equals(partido.getEstado())) {
             holder.tvGolesLocal.setText("-");
             holder.tvGolesVisitante.setText("-");
@@ -106,6 +114,7 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
     static class PartidoViewHolder extends RecyclerView.ViewHolder {
         TextView tvCompeticion, tvEstado, tvEquipoLocal, tvEquipoVisitante;
         TextView tvGolesLocal, tvGolesVisitante, tvMinuto, tvFechaHora;
+        ImageView ivEscudoLocal, ivEscudoVisitante;
 
         public PartidoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -117,6 +126,8 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
             tvGolesVisitante = itemView.findViewById(R.id.tvGolesVisitante);
             tvMinuto = itemView.findViewById(R.id.tvMinuto);
             tvFechaHora = itemView.findViewById(R.id.tvFechaHora);
+            ivEscudoLocal = itemView.findViewById(R.id.ivEscudoLocal);
+            ivEscudoVisitante = itemView.findViewById(R.id.ivEscudoVisitante);
         }
     }
 }

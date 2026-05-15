@@ -45,6 +45,7 @@
                 android:paddingEnd="8dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"/>
+
         </LinearLayout>
 
         <!-- Partido: Equipos y resultado -->
@@ -55,17 +56,30 @@
             android:gravity="center_vertical">
 
             <!-- Equipo Local -->
-            <TextView
-                android:id="@+id/tvEquipoLocal"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Real Madrid"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:gravity="end"
-                android:paddingEnd="16dp"/>
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivEscudoLocal"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvEquipoLocal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Real Madrid"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:gravity="center"/>
+
+            </LinearLayout>
 
             <!-- Marcador -->
             <LinearLayout
@@ -105,9 +119,9 @@
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
                         android:gravity="center"/>
+
                 </LinearLayout>
 
-                <!-- Minuto del partido (solo visible si está en vivo) -->
                 <TextView
                     android:id="@+id/tvMinuto"
                     android:layout_width="wrap_content"
@@ -119,7 +133,6 @@
                     android:layout_marginTop="4dp"
                     android:visibility="gone"/>
 
-                <!-- Fecha/Hora (para partidos programados o finalizados) -->
                 <TextView
                     android:id="@+id/tvFechaHora"
                     android:layout_width="wrap_content"
@@ -128,20 +141,37 @@
                     android:textSize="12sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginTop="4dp"/>
+
             </LinearLayout>
 
             <!-- Equipo Visitante -->
-            <TextView
-                android:id="@+id/tvEquipoVisitante"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="FC Barcelona"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:gravity="start"
-                android:paddingStart="16dp"/>
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/ivEscudoVisitante"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvEquipoVisitante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FC Barcelona"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

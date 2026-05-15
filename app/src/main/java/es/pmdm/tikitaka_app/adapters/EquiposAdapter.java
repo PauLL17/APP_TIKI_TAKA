@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class EquiposAdapter extends ArrayAdapter<Equipo> {
 
         Equipo equipo = getItem(position);
 
+        ImageView ivEscudo = convertView.findViewById(R.id.ivEscudo);
         TextView tvNombre  = convertView.findViewById(R.id.tvNombreEquipo);
         TextView tvCiudad  = convertView.findViewById(R.id.tvCiudadEquipo);
         TextView tvEstadio = convertView.findViewById(R.id.tvEstadioEquipo);
@@ -33,6 +37,10 @@ public class EquiposAdapter extends ArrayAdapter<Equipo> {
         tvNombre.setText(equipo.getNombre());
         tvCiudad.setText(equipo.getCiudad());
         tvEstadio.setText(equipo.getEstadio());
+
+        Glide.with(getContext())
+                .load(equipo.getEscudoUrl())
+                .into(ivEscudo);
 
         return convertView;
     }

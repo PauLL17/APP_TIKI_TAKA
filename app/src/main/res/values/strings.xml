@@ -80,9 +80,9 @@
     <string name="hint_ciudad">Ciudad</string>
     <string name="hint_estadio">Estadio</string>
     <string name="hint_entrenador">Entrenador</string>
+    <string name="hint_escudo_url">URL del escudo</string>
 
     <string name="permiso_notificaciones_denegado">Permiso de notificaciones denegado</string>
-
 
     <!-- DetalleEquipo -->
     <string name="detalle_equipo">Detalle del equipo</string>
