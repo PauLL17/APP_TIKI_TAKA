@@ -20,7 +20,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 
-public class PerfilActivity extends AppCompatActivity {
+public class PerfilActivity extends BaseActivity {
 
     private TextView tvNombreUsuario, tvEmailUsuario;
     private Spinner spinnerEquipoFavorito;

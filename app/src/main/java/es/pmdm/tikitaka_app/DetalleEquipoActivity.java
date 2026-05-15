@@ -30,7 +30,7 @@ import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Jugador;
 
-public class DetalleEquipoActivity extends AppCompatActivity {
+public class DetalleEquipoActivity extends BaseActivity {
 
     private TextView tvNombre, tvCiudad, tvEstadio, tvEntrenador, tvAnio;
     private Spinner spinnerPosicion;

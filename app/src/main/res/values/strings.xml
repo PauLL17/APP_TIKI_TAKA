@@ -144,4 +144,13 @@
     <string name="perfil_actualizado">Perfil actualizado correctamente</string>
     <string name="nombre_usuario_label">Usuario: %s</string>
     <string name="email_label">Email: %s</string>
+
+    <!-- Ajustes -->
+    <string name="ajustes">Ajustes</string>
+    <string name="ajustes_notificaciones">Notificaciones</string>
+    <string name="activar_notificaciones">Activar notificaciones</string>
+    <string name="ajustes_idioma">Idioma</string>
+    <string name="idioma_espanol">Español</string>
+    <string name="idioma_ingles">English</string>
+    <string name="reiniciar_app">Reinicia la app para aplicar el idioma</string>
 </resources>

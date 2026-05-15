@@ -24,7 +24,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Noticia;
 
-public class NoticiasActivity extends AppCompatActivity {
+public class NoticiasActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private ProgressBar progressBar;

@@ -26,7 +26,7 @@ import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Partido;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private Button btnLive, btnUpcoming, btnFinished;
@@ -185,6 +185,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.action_perfil) {
             Intent intent = new Intent(this, PerfilActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_ajustes) {
+            Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }

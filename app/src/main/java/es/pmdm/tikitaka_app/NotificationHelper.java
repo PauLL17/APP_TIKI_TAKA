@@ -41,6 +41,10 @@ public class NotificationHelper {
     }
 
     public void mostrarNotificacion(String titulo, String mensaje, int notificationId) {
+        if (!SettingsActivity.notificacionesActivas(context)) {
+            return;
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CANAL_ID)
                 .setContentTitle(titulo)
                 .setContentText(mensaje)

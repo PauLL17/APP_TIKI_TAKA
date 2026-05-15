@@ -14,7 +14,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Noticia;
 
-public class DetalleNoticiaActivity extends AppCompatActivity {
+public class DetalleNoticiaActivity extends BaseActivity {
 
     private TextView tvTitulo, tvFecha, tvContenido;
     private Button btnEliminar;

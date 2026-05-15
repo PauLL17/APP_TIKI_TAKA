@@ -20,7 +20,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.RankingItem;
 
-public class EstadisticasActivity extends AppCompatActivity {
+public class EstadisticasActivity extends BaseActivity {
 
     private ListView lvGoleadores, lvMasTarjetas, lvPartidosMasGoles;
 

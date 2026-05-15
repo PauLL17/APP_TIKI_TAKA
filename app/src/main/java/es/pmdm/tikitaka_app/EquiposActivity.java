@@ -33,7 +33,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 
-public class EquiposActivity extends AppCompatActivity {
+public class EquiposActivity extends BaseActivity {
 
     private static final int CODIGO_PERMISO_NOTIFICACIONES = 100;
 

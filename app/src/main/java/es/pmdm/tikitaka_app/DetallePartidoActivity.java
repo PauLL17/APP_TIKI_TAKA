@@ -27,7 +27,7 @@ import es.pmdm.tikitaka_app.modelos.Jugador;
 import es.pmdm.tikitaka_app.modelos.Partido;
 import es.pmdm.tikitaka_app.modelos.Tarjeta;
 
-public class DetallePartidoActivity extends AppCompatActivity {
+public class DetallePartidoActivity extends BaseActivity{
 
     private TextView tvCompeticion, tvEquipoLocal, tvEquipoVisitante;
     private TextView tvGolesLocal, tvGolesVisitante, tvMinuto;

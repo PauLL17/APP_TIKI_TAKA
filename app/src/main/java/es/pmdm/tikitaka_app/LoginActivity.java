@@ -15,7 +15,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Usuario;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private EditText etNombreUsuario, etPassword;
     private Button btnLogin, btnGuest;
     private TextView tvRegister;

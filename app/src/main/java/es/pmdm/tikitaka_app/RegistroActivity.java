@@ -20,7 +20,7 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 
-public class RegistroActivity extends AppCompatActivity {
+public class RegistroActivity extends BaseActivity {
     private EditText etNombreUsuario, etEmail, etPassword;
     private Spinner spinnerEquipo;
     private Button btnRegister;
