@@ -153,4 +153,14 @@
     <string name="idioma_espanol">Español</string>
     <string name="idioma_ingles">English</string>
     <string name="reiniciar_app">Reinicia la app para aplicar el idioma</string>
+
+    <!-- About -->
+    <string name="about">Acerca de</string>
+    <string name="about_version">Versión 1.0</string>
+    <string name="about_descripcion">Aplicación de fútbol español centrada en LaLiga. Resultados en tiempo real, estadísticas y noticias de tus equipos favoritos.</string>
+    <string name="about_autor_titulo">Autor</string>
+    <string name="about_autor_nombre">Pau Lledó López</string>
+    <string name="about_autor_email">paullelop@alu.edu.gva.es</string>
+    <string name="about_autor_curso">2º DAM — Curso 2025/2026</string>
+    <string name="about_video_titulo">Presentación</string>
 </resources>

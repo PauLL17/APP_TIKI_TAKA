@@ -153,4 +153,14 @@
     <string name="idioma_ingles">English</string>
     <string name="reiniciar_app">Restart the app to apply the language</string>
 
+    <!-- About -->
+    <string name="about">About</string>
+    <string name="about_version">Version 1.0</string>
+    <string name="about_descripcion">Spanish football app focused on LaLiga. Real-time results, statistics and news about your favourite teams.</string>
+    <string name="about_autor_titulo">Author</string>
+    <string name="about_autor_nombre">Pau Lledó López</string>
+    <string name="about_autor_email">paullelop@alu.edu.gva.es</string>
+    <string name="about_autor_curso">2nd DAM — Academic year 2024/2025</string>
+    <string name="about_video_titulo">Presentation</string>
+
 </resources>

@@ -4,8 +4,8 @@ import org.json.JSONObject;
 
 // Proporciona métodos para interactuar con el API REST de Tiki-Taka.
 public class API {
-    private static final String BASE_URL = "http://192.168.10.231:8080/";
-    // private static final String BASE_URL = "http://10.0.2.2:8080/";
+    //private static final String BASE_URL = "http://192.168.10.231:8080/";
+    private static final String BASE_URL = "http://10.0.2.2:8080/";
 
     // AUTH
     public static void login(JSONObject body, UtilREST.OnResponseListener listener) {
