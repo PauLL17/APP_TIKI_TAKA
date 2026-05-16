@@ -61,14 +61,6 @@
                         android:textColor="@color/text_primary"
                         android:layout_marginBottom="16dp"/>
 
-                    <Button
-                        android:id="@+id/btnEliminarNoticia"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/eliminar_noticia"
-                        android:backgroundTint="@color/accent"
-                        android:textColor="@android:color/white"/>
-
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

@@ -335,8 +335,10 @@ public class DetalleEquipoActivity extends BaseActivity {
             API.postJugador(body, token, new UtilREST.OnResponseListener() {
                 @Override
                 public void onSuccess(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarCorto(DetalleEquipoActivity.this,
-                            getString(R.string.jugador_creado));
+                    new NotificationHelper(DetalleEquipoActivity.this).mostrarNotificacion(
+                            getString(R.string.jugador_creado),
+                            nombre + " " + apellidos,
+                            NotificationHelper.NOTIF_CREAR);
                     cargarJugadores();
                 }
 
@@ -349,42 +351,6 @@ public class DetalleEquipoActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void mostrarDialogoEliminarJugador(int position) {
-        Jugador jugador = listaJugadores.get(position);
-
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.dialogo_eliminar_jugador_titulo))
-                .setMessage(getString(R.string.dialogo_eliminar_jugador_mensaje))
-                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
-                    eliminarJugador(jugador, position);
-                })
-                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
-                    dialog.dismiss();
-                })
-                .show();
-    }
-
-    private void eliminarJugador(Jugador jugador, int position) {
-        String token = SessionManager.getToken(this);
-
-        API.deleteJugador(jugador.getId(), token, new UtilREST.OnResponseListener() {
-            @Override
-            public void onSuccess(UtilREST.Response r) {
-                ToastPersonalizado.mostrarCorto(DetalleEquipoActivity.this,
-                        getString(R.string.jugador_eliminado));
-                listaJugadores.remove(position);
-                adapter = new JugadoresAdapter(DetalleEquipoActivity.this, listaJugadores);
-                lvJugadores.setAdapter(adapter);
-            }
-
-            @Override
-            public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetalleEquipoActivity.this,
-                        getString(R.string.error_cargar_datos));
-            }
-        });
     }
 
     @Override

@@ -206,6 +206,11 @@ public class NoticiasActivity extends BaseActivity {
                 listaNoticias.remove(position);
                 adapter = new NoticiasAdapter(NoticiasActivity.this, listaNoticias);
                 lvNoticias.setAdapter(adapter);
+
+                new NotificationHelper(NoticiasActivity.this).mostrarNotificacion(
+                        getString(R.string.noticia_eliminada),
+                        noticia.getTitulo(),
+                        NotificationHelper.NOTIF_ELIMINAR);
             }
 
             @Override

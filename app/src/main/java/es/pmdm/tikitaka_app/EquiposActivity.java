@@ -34,9 +34,6 @@ import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 
 public class EquiposActivity extends BaseActivity {
-
-    private static final int CODIGO_PERMISO_NOTIFICACIONES = 100;
-
     private Toolbar toolbar;
     private ProgressBar progressBar;
     private TextView tvNoEquipos;
@@ -55,7 +52,6 @@ public class EquiposActivity extends BaseActivity {
         setupToolbar();
         setupListView();
         notificationHelper = new NotificationHelper(this);
-        pedirPermisoNotificaciones();
         cargarEquipos();
     }
 
@@ -258,29 +254,5 @@ public class EquiposActivity extends BaseActivity {
                         getString(R.string.error_cargar_datos));
             }
         });
-    }
-
-    private void pedirPermisoNotificaciones() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
-                        CODIGO_PERMISO_NOTIFICACIONES);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CODIGO_PERMISO_NOTIFICACIONES) {
-            if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                ToastPersonalizado.mostrarError(this,
-                        getString(R.string.permiso_notificaciones_denegado));
-            }
-        }
     }
 }

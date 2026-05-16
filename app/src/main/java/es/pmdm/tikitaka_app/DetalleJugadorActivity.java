@@ -249,8 +249,10 @@ public class DetalleJugadorActivity extends BaseActivity {
         API.deleteJugador(jugadorId, token, new UtilREST.OnResponseListener() {
             @Override
             public void onSuccess(UtilREST.Response r) {
-                ToastPersonalizado.mostrarCorto(DetalleJugadorActivity.this,
-                        getString(R.string.jugador_eliminado));
+                new NotificationHelper(DetalleJugadorActivity.this).mostrarNotificacion(
+                        getString(R.string.jugador_eliminado),
+                        jugador.getNombreCompleto(),
+                        NotificationHelper.NOTIF_ELIMINAR);
                 finish();
             }
 

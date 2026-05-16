@@ -1,6 +1,8 @@
 package es.pmdm.tikitaka_app;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,8 +11,11 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +32,7 @@ import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class MainActivity extends BaseActivity {
+    private static final int CODIGO_PERMISO_NOTIFICACIONES = 100;
 
     private Toolbar toolbar;
     private Button btnLive, btnUpcoming, btnFinished;
@@ -49,6 +55,7 @@ public class MainActivity extends BaseActivity {
         setupRecyclerView();
         setupFilterButtons();
         cargarEquiposYPartidos();
+        pedirPermisoNotificaciones();
     }
 
     private void initViews() {
@@ -208,5 +215,29 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void pedirPermisoNotificaciones() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        CODIGO_PERMISO_NOTIFICACIONES);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CODIGO_PERMISO_NOTIFICACIONES) {
+            if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                ToastPersonalizado.mostrarError(this,
+                        getString(R.string.permiso_notificaciones_denegado));
+            }
+        }
     }
 }
