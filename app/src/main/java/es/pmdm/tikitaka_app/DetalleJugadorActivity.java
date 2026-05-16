@@ -1,7 +1,10 @@
 package es.pmdm.tikitaka_app;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -259,10 +262,31 @@ public class DetalleJugadorActivity extends BaseActivity {
         });
     }
 
+    private void buscarJugadorEnGoogle() {
+        if (jugador == null) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_cargar_datos));
+            return;
+        }
+        Uri uri = Uri.parse("https://www.google.com/search?q=" + Uri.encode(jugador.getNombreCompleto()));
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detalle_jugador, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_buscar_jugador) {
+            buscarJugadorEnGoogle();
             return true;
         }
         return super.onOptionsItemSelected(item);

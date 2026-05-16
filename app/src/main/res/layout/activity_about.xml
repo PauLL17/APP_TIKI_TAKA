@@ -71,6 +71,24 @@
                         android:gravity="center"
                         android:layout_marginBottom="8dp"/>
 
+                    <Button
+                        android:id="@+id/btnAbrirWeb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/abrir_web"
+                        android:backgroundTint="@color/primary"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="12dp"/>
+
+                    <Button
+                        android:id="@+id/btnContactar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contactar_soporte"
+                        android:backgroundTint="@color/accent"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="8dp"/>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

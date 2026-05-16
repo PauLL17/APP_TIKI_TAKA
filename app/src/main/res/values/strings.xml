@@ -63,6 +63,7 @@
     <string name="corners">Corners</string>
     <string name="faltas">Faltas</string>
     <string name="detalle_partido">Detalle del partido</string>
+    <string name="compartir">Compartir</string>
 
     <!-- Equipos -->
     <string name="equipos">Equipos</string>
@@ -118,6 +119,7 @@
     <string name="posicion_label">Posición: %s</string>
     <string name="nacionalidad_label">Nacionalidad: %s</string>
     <string name="jugador_actualizado">Jugador actualizado correctamente</string>
+    <string name="buscar_en_google">Buscar en Google</string>
 
     <!-- Noticias -->
     <string name="noticias">Noticias</string>
@@ -163,4 +165,9 @@
     <string name="about_autor_email">paullelop@alu.edu.gva.es</string>
     <string name="about_autor_curso">2º DAM — Curso 2025/2026</string>
     <string name="about_video_titulo">Presentación</string>
+    <string name="abrir_web">Visitar LaLiga</string>
+    <string name="contactar_soporte">Contactar soporte</string>
+    <string name="email_asunto">Soporte TikiTaka App</string>
+    <string name="email_cuerpo">Hola, necesito ayuda con la aplicación TikiTaka.</string>
+
 </resources>

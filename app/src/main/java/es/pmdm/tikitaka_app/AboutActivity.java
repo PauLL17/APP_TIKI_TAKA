@@ -1,8 +1,10 @@
 package es.pmdm.tikitaka_app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -13,6 +15,7 @@ public class AboutActivity extends AppCompatActivity {
 
     private VideoView videoView;
     private MediaController mediaController;
+    private Button btnAbrirWeb, btnContactar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,13 @@ public class AboutActivity extends AppCompatActivity {
         initViews();
         setupToolbar();
         setupVideo();
+        setupListeners();
     }
 
     private void initViews() {
         videoView = findViewById(R.id.videoView);
+        btnAbrirWeb   = findViewById(R.id.btnAbrirWeb);
+        btnContactar  = findViewById(R.id.btnContactar);
     }
 
     private void setupToolbar() {
@@ -35,6 +41,26 @@ public class AboutActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.about);
         }
+    }
+
+    private void setupListeners() {
+        btnAbrirWeb.setOnClickListener(v -> abrirWeb());
+        btnContactar.setOnClickListener(v -> contactarSoporte());
+    }
+
+    private void abrirWeb() {
+        Uri webpage = Uri.parse("https://www.laliga.com");
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
+    }
+
+    private void contactarSoporte() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"soporte@tikitaka.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_asunto));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_cuerpo));
+        startActivity(intent);
     }
 
     private void setupVideo() {
