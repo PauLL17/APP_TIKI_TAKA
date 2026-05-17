@@ -63,7 +63,15 @@
     <string name="corners">Corners</string>
     <string name="faltas">Faltas</string>
     <string name="detalle_partido">Detalle del partido</string>
-    <string name="compartir">Compartir</string>
+    <string name="aniadir_gol">Añadir gol</string>
+    <string name="editar_partido">Editar partido</string>
+    <string name="hint_minuto">Minuto</string>
+    <string name="hint_tipo_gol">Tipo de gol</string>
+    <string name="hint_estado">Estado</string>
+    <string name="hint_minuto_actual">Minuto actual</string>
+    <string name="gol_creado">Gol registrado correctamente</string>
+    <string name="partido_actualizado">Partido actualizado correctamente</string>
+    <string name="hint_fecha_hora">Fecha y hora (yyyy-MM-ddTHH:mm:ss)</string>
 
     <!-- Equipos -->
     <string name="equipos">Equipos</string>

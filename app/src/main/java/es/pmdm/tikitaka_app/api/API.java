@@ -111,6 +111,10 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/goles/goleadores", null, token, listener);
     }
 
+    public static void postGol(JSONObject body, String token, UtilREST.OnResponseListener listener) {
+        UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/goles", body.toString(), token, listener);
+    }
+
     // TARJETAS
     public static void getTarjetasByPartido(long partidoId, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/tarjetas/partido/" + partidoId, null, token, listener);
@@ -175,6 +179,10 @@ public class API {
 
     public static void deleteNoticia(long id, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.DELETE, BASE_URL + "api/noticias/" + id, null, token, listener);
+    }
+
+    public static void postNoticia(JSONObject body, String token, UtilREST.OnResponseListener listener) {
+        UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/noticias", body.toString(), token, listener);
     }
 
     // NOTIFICACIONES

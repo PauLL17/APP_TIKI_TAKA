@@ -63,7 +63,15 @@
     <string name="corners">Corners</string>
     <string name="faltas">Fouls</string>
     <string name="detalle_partido">Match Details</string>
-    <string name="compartir">Share</string>
+    <string name="aniadir_gol">Add goal</string>
+    <string name="editar_partido">Edit match</string>
+    <string name="hint_minuto">Minute</string>
+    <string name="hint_tipo_gol">Goal type</string>
+    <string name="hint_estado">Status</string>
+    <string name="hint_minuto_actual">Current minute</string>
+    <string name="gol_creado">Goal registered successfully</string>
+    <string name="partido_actualizado">Match updated successfully</string>
+    <string name="hint_fecha_hora">Date and time (yyyy-MM-ddTHH:mm:ss)</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>
