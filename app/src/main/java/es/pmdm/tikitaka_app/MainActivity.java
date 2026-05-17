@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity {
 
         initViews();
         setupToolbar();
+        conectarWebSocket();
         setupRecyclerView();
         setupFilterButtons();
         cargarEquiposYPartidos();
@@ -211,12 +212,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void logout() {
+        WebSocketManager.getInstance().desconectarTodo();
         SessionManager.cerrarSesion(this);
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
-
     private void pedirPermisoNotificaciones() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this,
@@ -238,6 +239,13 @@ public class MainActivity extends BaseActivity {
                 ToastPersonalizado.mostrarError(this,
                         getString(R.string.permiso_notificaciones_denegado));
             }
+        }
+    }
+
+    private void conectarWebSocket() {
+        if (!SessionManager.esInvitado(this)) {
+            long usuarioId = SessionManager.getUsuarioId(this);
+            WebSocketManager.getInstance().conectarNotificaciones(this, usuarioId);
         }
     }
 }

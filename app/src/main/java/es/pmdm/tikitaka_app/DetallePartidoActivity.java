@@ -126,6 +126,7 @@ public class DetallePartidoActivity extends BaseActivity {
                         cargarEstadisticas();
                         cargarEventos();
                         cargarAlineaciones();
+                        conectarWebSocketMarcador();
                     }
 
                     @Override
@@ -501,5 +502,26 @@ public class DetallePartidoActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void conectarWebSocketMarcador() {
+        WebSocketManager.getInstance().conectarMarcador(partidoId, (golesLocal, golesVisitante, estado) -> {
+            tvGolesLocal.setText(String.valueOf(golesLocal));
+            tvGolesVisitante.setText(String.valueOf(golesVisitante));
+
+            if (estado.equals(Partido.ESTADO_EN_VIVO)) {
+                tvMinuto.setText(getString(R.string.live_matches));
+            } else if (estado.equals(Partido.ESTADO_FINALIZADO)) {
+                tvMinuto.setText("FT");
+            } else {
+                tvMinuto.setText(partido.getFechaHora());
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        WebSocketManager.getInstance().desconectarMarcador();
     }
 }
