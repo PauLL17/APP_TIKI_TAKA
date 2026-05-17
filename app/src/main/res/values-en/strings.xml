@@ -140,6 +140,10 @@
     <string name="eliminar_noticia">Delete news</string>
     <string name="no_equipo_favorito">You have no favourite team configured</string>
     <string name="detalle_noticia">News detail</string>
+    <string name="crear_noticia">Create news</string>
+    <string name="noticia_creada">News created successfully</string>
+    <string name="hint_titulo_noticia">Title</string>
+    <string name="hint_contenido_noticia">Content</string>
 
     <!-- Estadisticas -->
     <string name="estadisticas_title">Statistics</string>

@@ -140,6 +140,10 @@
     <string name="eliminar_noticia">Eliminar noticia</string>
     <string name="no_equipo_favorito">No tienes equipo favorito configurado</string>
     <string name="detalle_noticia">Detalle de la noticia</string>
+    <string name="crear_noticia">Crear noticia</string>
+    <string name="noticia_creada">Noticia creada correctamente</string>
+    <string name="hint_titulo_noticia">Título</string>
+    <string name="hint_contenido_noticia">Contenido</string>
 
     <!-- Estadisticas -->
     <string name="estadisticas_title">Estadísticas</string>

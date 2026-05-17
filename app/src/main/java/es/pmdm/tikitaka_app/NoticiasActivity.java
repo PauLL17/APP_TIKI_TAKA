@@ -3,17 +3,22 @@ package es.pmdm.tikitaka_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,7 @@ import es.pmdm.tikitaka_app.adapters.NoticiasAdapter;
 import es.pmdm.tikitaka_app.api.API;
 import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
+import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Noticia;
 
 public class NoticiasActivity extends BaseActivity {
@@ -33,6 +39,7 @@ public class NoticiasActivity extends BaseActivity {
 
     private NoticiasAdapter adapter;
     private List<Noticia> listaNoticias = new ArrayList<>();
+    private List<Equipo> listaEquipos   = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,7 @@ public class NoticiasActivity extends BaseActivity {
         initViews();
         setupToolbar();
         setupListView();
+        cargarEquipos();
         cargarUltimasNoticias();
     }
 
@@ -72,6 +80,23 @@ public class NoticiasActivity extends BaseActivity {
         });
 
         registerForContextMenu(lvNoticias);
+    }
+
+    private void cargarEquipos() {
+        String token = SessionManager.getToken(this);
+
+        API.getEquipos(token, new UtilREST.OnResponseListener() {
+            @Override
+            public void onSuccess(UtilREST.Response r) {
+                listaEquipos = UtilJSONParser.parseArrayEquipos(r.content);
+            }
+
+            @Override
+            public void onError(UtilREST.Response r) {
+                ToastPersonalizado.mostrarError(NoticiasActivity.this,
+                        getString(R.string.error_cargar_datos));
+            }
+        });
     }
 
     private void cargarUltimasNoticias() {
@@ -159,7 +184,87 @@ public class NoticiasActivity extends BaseActivity {
             cargarNoticiasMiEquipo();
             return true;
         }
+        if (item.getItemId() == R.id.action_crear_noticia) {
+            mostrarDialogoCrearNoticia();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void mostrarDialogoCrearNoticia() {
+        if (listaEquipos.isEmpty()) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_cargar_datos));
+            return;
+        }
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialogo_noticia, null);
+
+        EditText etTitulo    = dialogView.findViewById(R.id.etTituloNoticia);
+        EditText etContenido = dialogView.findViewById(R.id.etContenidoNoticia);
+        Spinner  spEquipo    = dialogView.findViewById(R.id.spinnerEquipoNoticia);
+
+        List<String> nombresEquipos = new ArrayList<>();
+        for (Equipo equipo : listaEquipos) {
+            nombresEquipos.add(equipo.getNombre());
+        }
+
+        ArrayAdapter<String> adapterEquipos = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, nombresEquipos);
+        adapterEquipos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEquipo.setAdapter(adapterEquipos);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.crear_noticia))
+                .setView(dialogView)
+                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
+                    String titulo    = etTitulo.getText().toString().trim();
+                    String contenido = etContenido.getText().toString().trim();
+
+                    if (titulo.isEmpty() || contenido.isEmpty()) {
+                        ToastPersonalizado.mostrarError(this, getString(R.string.empty_fields));
+                        return;
+                    }
+
+                    Equipo equipoSeleccionado = listaEquipos.get(spEquipo.getSelectedItemPosition());
+                    crearNoticia(titulo, contenido, equipoSeleccionado.getId());
+                })
+                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private void crearNoticia(String titulo, String contenido, long equipoId) {
+        String token = SessionManager.getToken(this);
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("titulo", titulo);
+            body.put("contenido", contenido);
+            body.put("equipoId", equipoId);
+
+            API.postNoticia(body, token, new UtilREST.OnResponseListener() {
+                @Override
+                public void onSuccess(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarCorto(NoticiasActivity.this,
+                            getString(R.string.noticia_creada));
+                    new NotificationHelper(NoticiasActivity.this).mostrarNotificacion(
+                            getString(R.string.noticia_creada),
+                            titulo,
+                            NotificationHelper.NOTIF_CREAR);
+                    cargarUltimasNoticias();
+                }
+
+                @Override
+                public void onError(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarError(NoticiasActivity.this,
+                            getString(R.string.error_cargar_datos));
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
