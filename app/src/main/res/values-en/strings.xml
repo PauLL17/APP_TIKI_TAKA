@@ -41,6 +41,9 @@
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
     <string name="error_cargar_datos">Error loading data</string>
+    <string name="navigation_drawer_open">Open menu</string>
+    <string name="navigation_drawer_close">Close menu</string>
+    <string name="cerrar_sesion">Log out</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Create your account</string>
@@ -182,7 +185,7 @@
     <string name="email_asunto">TikiTaka App Support</string>
     <string name="email_cuerpo">Hello, I need help with the TikiTaka app.</string>
 
-    <!-- strings-en -->
+    <!-- Busqueda Jugadores -->
     <string name="busqueda_jugadores">Player search</string>
     <string name="hint_buscar_jugador">Player name</string>
     <string name="buscar">Search</string>

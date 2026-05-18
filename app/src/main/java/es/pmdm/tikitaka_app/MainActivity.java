@@ -4,20 +4,21 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +35,8 @@ import es.pmdm.tikitaka_app.modelos.Partido;
 public class MainActivity extends BaseActivity {
     private static final int CODIGO_PERMISO_NOTIFICACIONES = 100;
 
+    private DrawerLayout drawer;
+    private NavigationView navView;
     private Toolbar toolbar;
     private Button btnLive, btnUpcoming, btnFinished;
     private RecyclerView rvPartidos;
@@ -52,6 +55,7 @@ public class MainActivity extends BaseActivity {
 
         initViews();
         setupToolbar();
+        setupDrawer();
         conectarWebSocket();
         setupRecyclerView();
         setupFilterButtons();
@@ -60,6 +64,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViews() {
+        drawer = findViewById(R.id.drawer_layout);
+        navView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         btnLive = findViewById(R.id.btnLive);
         btnUpcoming = findViewById(R.id.btnUpcoming);
@@ -76,6 +82,40 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private void setupDrawer() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_equipos) {
+                startActivity(new Intent(this, EquiposActivity.class));
+            } else if (id == R.id.nav_noticias) {
+                startActivity(new Intent(this, NoticiasActivity.class));
+            } else if (id == R.id.nav_estadisticas) {
+                startActivity(new Intent(this, EstadisticasActivity.class));
+            } else if (id == R.id.nav_busqueda_jugadores) {
+                startActivity(new Intent(this, BusquedaJugadoresActivity.class));
+            } else if (id == R.id.nav_perfil) {
+                startActivity(new Intent(this, PerfilActivity.class));
+            } else if (id == R.id.nav_ajustes) {
+                startActivity(new Intent(this, SettingsActivity.class));
+            } else if (id == R.id.nav_about) {
+                startActivity(new Intent(this, AboutActivity.class));
+            } else if (id == R.id.nav_logout) {
+                logout();
+            }
+
+            drawer.closeDrawers();
+            return true;
+        });
+    }
+
     private void setupRecyclerView() {
         adapter = new PartidosAdapter(new ArrayList<>(), this);
         rvPartidos.setLayoutManager(new LinearLayoutManager(this));
@@ -88,7 +128,6 @@ public class MainActivity extends BaseActivity {
         btnFinished.setOnClickListener(v -> filtrarPartidos(Partido.ESTADO_FINALIZADO));
     }
 
-    // Primero cargamos los equipos, luego los partidos
     private void cargarEquiposYPartidos() {
         progressBar.setVisibility(View.VISIBLE);
         rvPartidos.setVisibility(View.GONE);
@@ -122,7 +161,6 @@ public class MainActivity extends BaseActivity {
             public void onSuccess(UtilREST.Response r) {
                 todosPartidos = UtilJSONParser.parseArrayPartidos(r.content);
 
-                // Resolver equipos desde la caché
                 for (Partido partido : todosPartidos) {
                     partido.setEquipoLocal(equiposCache.get(partido.getEquipoLocalId()));
                     partido.setEquipoVisitante(equiposCache.get(partido.getEquipoVisitanteId()));
@@ -160,63 +198,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_logout) {
-            logout();
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_equipos) {
-            Intent intent = new Intent(this, EquiposActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_noticias) {
-            Intent intent = new Intent(this, NoticiasActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_estadisticas) {
-            Intent intent = new Intent(this, EstadisticasActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_perfil) {
-            Intent intent = new Intent(this, PerfilActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_ajustes) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_about) {
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_busqueda_jugadores) {
-            Intent intent = new Intent(this, BusquedaJugadoresActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void logout() {
         WebSocketManager.getInstance().desconectarTodo();
         SessionManager.cerrarSesion(this);
@@ -224,6 +205,7 @@ public class MainActivity extends BaseActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
     private void pedirPermisoNotificaciones() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this,

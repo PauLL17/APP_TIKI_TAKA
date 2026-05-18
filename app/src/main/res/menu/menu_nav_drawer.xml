@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_equipos"
+        android:title="@string/equipos"/>
+
+    <item
+        android:id="@+id/nav_noticias"
+        android:title="@string/noticias"/>
+
+    <item
+        android:id="@+id/nav_estadisticas"
+        android:title="@string/estadisticas_title"/>
+
+    <item
+        android:id="@+id/nav_busqueda_jugadores"
+        android:title="@string/busqueda_jugadores"/>
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:title="@string/perfil"/>
+
+    <item
+        android:id="@+id/nav_ajustes"
+        android:title="@string/ajustes"/>
+
+    <item
+        android:id="@+id/nav_about"
+        android:title="@string/about"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/cerrar_sesion"/>
+
+</menu>
