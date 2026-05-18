@@ -182,4 +182,10 @@
     <string name="email_asunto">TikiTaka App Support</string>
     <string name="email_cuerpo">Hello, I need help with the TikiTaka app.</string>
 
+    <!-- strings-en -->
+    <string name="busqueda_jugadores">Player search</string>
+    <string name="hint_buscar_jugador">Player name</string>
+    <string name="buscar">Search</string>
+    <string name="no_resultados">No results found</string>
+    <string name="todas_posiciones_busqueda">All positions</string>
 </resources>

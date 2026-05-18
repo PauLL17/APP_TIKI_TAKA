@@ -25,7 +25,7 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/" + id, null, token, listener);
     }
 
-    public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) { //Consulta JPA
+    public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/estado/" + estado, null, token, listener);
     }
 

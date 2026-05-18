@@ -208,6 +208,12 @@ public class MainActivity extends BaseActivity {
             startActivity(intent);
             return true;
         }
+
+        if (item.getItemId() == R.id.action_busqueda_jugadores) {
+            Intent intent = new Intent(this, BusquedaJugadoresActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

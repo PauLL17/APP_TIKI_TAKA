@@ -36,4 +36,9 @@
         android:id="@+id/action_about"
         android:title="@string/about"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_busqueda_jugadores"
+        android:title="@string/busqueda_jugadores"
+        app:showAsAction="never"/>
 </menu>

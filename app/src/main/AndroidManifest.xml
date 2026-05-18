@@ -15,8 +15,11 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BusquedaJugadoresActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".AboutActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -64,4 +67,5 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
     </application>
+
 </manifest>

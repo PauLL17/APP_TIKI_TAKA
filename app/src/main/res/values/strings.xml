@@ -182,4 +182,10 @@
     <string name="email_asunto">Soporte TikiTaka App</string>
     <string name="email_cuerpo">Hola, necesito ayuda con la aplicación TikiTaka.</string>
 
+    <!-- Busqueda Jugadores -->
+    <string name="busqueda_jugadores">Búsqueda de jugadores</string>
+    <string name="hint_buscar_jugador">Nombre del jugador</string>
+    <string name="buscar">Buscar</string>
+    <string name="no_resultados">No se encontraron resultados</string>
+    <string name="todas_posiciones_busqueda">Todas las posiciones</string>
 </resources>
