@@ -63,6 +63,12 @@ public class MainActivity extends BaseActivity {
         pedirPermisoNotificaciones();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarEquiposYPartidos();
+    }
+
     private void initViews() {
         drawer = findViewById(R.id.drawer_layout);
         navView = findViewById(R.id.nav_view);

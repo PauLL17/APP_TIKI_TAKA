@@ -93,8 +93,34 @@ public class DetallePartidoActivity extends BaseActivity {
             @Override
             public void onSuccess(UtilREST.Response r) {
                 partido = UtilJSONParser.parsePartido(r.content);
-                mostrarCabecera();
-                cargarJugadoresYDatos();
+
+                API.getEquipo(partido.getEquipoLocalId(), token, new UtilREST.OnResponseListener() {
+                    @Override
+                    public void onSuccess(UtilREST.Response r2) {
+                        partido.setEquipoLocal(UtilJSONParser.parseEquipo(r2.content));
+
+                        API.getEquipo(partido.getEquipoVisitanteId(), token, new UtilREST.OnResponseListener() {
+                            @Override
+                            public void onSuccess(UtilREST.Response r3) {
+                                partido.setEquipoVisitante(UtilJSONParser.parseEquipo(r3.content));
+                                mostrarCabecera();
+                                cargarJugadoresYDatos();
+                            }
+
+                            @Override
+                            public void onError(UtilREST.Response r3) {
+                                mostrarCabecera();
+                                cargarJugadoresYDatos();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(UtilREST.Response r2) {
+                        mostrarCabecera();
+                        cargarJugadoresYDatos();
+                    }
+                });
             }
 
             @Override
