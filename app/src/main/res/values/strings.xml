@@ -10,7 +10,6 @@
     <string name="password">Contraseña</string>
     <string name="login_button">Iniciar sesión</string>
     <string name="register_button">Registrarse</string>
-    <string name="guest_button">Entrar como invitado</string>
     <string name="no_account">¿No tienes cuenta?</string>
     <string name="coming_soon">Próximamente</string>
 

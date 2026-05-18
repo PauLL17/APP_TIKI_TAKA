@@ -84,24 +84,6 @@
                 android:backgroundTint="@color/accent"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="o"
-                android:layout_gravity="center"
-                android:textColor="@color/text_secondary"
-                android:layout_marginBottom="12dp"/>
-
-            <!-- Botón Invitado -->
-            <Button
-                android:id="@+id/btnGuest"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="@string/guest_button"
-                android:textColor="@color/primary"
-                android:backgroundTint="@color/surface"
-                style="?android:attr/borderlessButtonStyle"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -17,7 +17,7 @@ import es.pmdm.tikitaka_app.modelos.Usuario;
 
 public class LoginActivity extends BaseActivity {
     private EditText etNombreUsuario, etPassword;
-    private Button btnLogin, btnGuest;
+    private Button btnLogin;
     private TextView tvRegister;
 
     @Override
@@ -38,14 +38,11 @@ public class LoginActivity extends BaseActivity {
         etNombreUsuario = findViewById(R.id.etEmail);
         etPassword      = findViewById(R.id.etPassword);
         btnLogin        = findViewById(R.id.btnLogin);
-        btnGuest        = findViewById(R.id.btnGuest);
         tvRegister      = findViewById(R.id.tvRegister);
     }
 
     private void setupListeners() {
         btnLogin.setOnClickListener(v -> attemptLogin());
-
-        btnGuest.setOnClickListener(v -> loginAsGuest());
 
         tvRegister.setOnClickListener(v -> {
             Intent intent = new Intent(this, RegistroActivity.class);
@@ -99,11 +96,6 @@ public class LoginActivity extends BaseActivity {
                 ToastPersonalizado.mostrarError(LoginActivity.this, getString(R.string.login_error));
             }
         });
-    }
-
-    private void loginAsGuest() {
-        SessionManager.guardarSesionInvitado(this);
-        navigateToMain();
     }
 
     private void navigateToMain() {

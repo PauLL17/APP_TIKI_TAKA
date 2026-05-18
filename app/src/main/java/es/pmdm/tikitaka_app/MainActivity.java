@@ -237,9 +237,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void conectarWebSocket() {
-        if (!SessionManager.esInvitado(this)) {
             long usuarioId = SessionManager.getUsuarioId(this);
             WebSocketManager.getInstance().conectarNotificaciones(this, usuarioId);
-        }
     }
 }

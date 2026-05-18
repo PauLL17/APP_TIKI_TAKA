@@ -13,7 +13,7 @@ public class SessionManager {
     public static final String KEY_NOMBRE_USUARIO   = "nombreUsuario";
     public static final String KEY_EMAIL            = "email";
     public static final String KEY_EQUIPO_FAVORITO  = "equipoFavoritoId";
-    public static final String KEY_ES_INVITADO      = "esInvitado";
+
 
     // Guardar sesión tras login/registro
     public static void guardarSesion(Context context, String token,
@@ -26,24 +26,11 @@ public class SessionManager {
         editor.putString(KEY_NOMBRE_USUARIO, nombreUsuario);
         editor.putString(KEY_EMAIL, email);
         editor.putLong(KEY_EQUIPO_FAVORITO, equipoFavoritoId);
-        editor.putBoolean(KEY_ES_INVITADO, false);
-        editor.apply();
-    }
-
-    // Sesión de invitado — sin token ni datos de usuario
-    public static void guardarSesionInvitado(Context context) {
-        SharedPreferences.Editor editor = getPrefs(context).edit();
-        editor.putBoolean(KEY_IS_LOGGED_IN, true);
-        editor.putBoolean(KEY_ES_INVITADO, true);
         editor.apply();
     }
 
     public static boolean isLoggedIn(Context context) {
         return getPrefs(context).getBoolean(KEY_IS_LOGGED_IN, false);
-    }
-
-    public static boolean esInvitado(Context context) {
-        return getPrefs(context).getBoolean(KEY_ES_INVITADO, false);
     }
 
     public static String getToken(Context context) {
