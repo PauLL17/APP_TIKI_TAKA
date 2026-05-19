@@ -5,8 +5,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import es.pmdm.tikitaka_app.api.API;
 import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.modelos.Jornada;
 import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class MainActivity extends BaseActivity {
@@ -39,6 +43,7 @@ public class MainActivity extends BaseActivity {
     private NavigationView navView;
     private Toolbar toolbar;
     private Button btnLive, btnUpcoming, btnFinished;
+    private Spinner spinnerJornada;
     private RecyclerView rvPartidos;
     private TextView tvNoMatches;
     private ProgressBar progressBar;
@@ -46,7 +51,9 @@ public class MainActivity extends BaseActivity {
     private PartidosAdapter adapter;
     private List<Partido> todosPartidos = new ArrayList<>();
     private Map<Long, Equipo> equiposCache = new HashMap<>();
+    private List<Jornada> listaJornadas = new ArrayList<>();
     private String filtroActual = Partido.ESTADO_EN_VIVO;
+    private long jornadaFiltro = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +66,7 @@ public class MainActivity extends BaseActivity {
         conectarWebSocket();
         setupRecyclerView();
         setupFilterButtons();
-        cargarEquiposYPartidos();
+        cargarJornadas();
         pedirPermisoNotificaciones();
     }
 
@@ -76,6 +83,7 @@ public class MainActivity extends BaseActivity {
         btnLive = findViewById(R.id.btnLive);
         btnUpcoming = findViewById(R.id.btnUpcoming);
         btnFinished = findViewById(R.id.btnFinished);
+        spinnerJornada = findViewById(R.id.spinnerJornada);
         rvPartidos = findViewById(R.id.rvPartidos);
         tvNoMatches = findViewById(R.id.tvNoMatches);
         progressBar = findViewById(R.id.progressBar);
@@ -134,6 +142,50 @@ public class MainActivity extends BaseActivity {
         btnFinished.setOnClickListener(v -> filtrarPartidos(Partido.ESTADO_FINALIZADO));
     }
 
+    private void cargarJornadas() {
+        String token = SessionManager.getToken(this);
+
+        API.getJornadas(token, new UtilREST.OnResponseListener() {
+            @Override
+            public void onSuccess(UtilREST.Response r) {
+                listaJornadas = UtilJSONParser.parseArrayJornadas(r.content);
+                setupSpinnerJornadas();
+                cargarEquiposYPartidos();
+            }
+
+            @Override
+            public void onError(UtilREST.Response r) {
+                cargarEquiposYPartidos();
+            }
+        });
+    }
+
+    private void setupSpinnerJornadas() {
+        List<String> nombresJornadas = new ArrayList<>();
+        for (Jornada jornada : listaJornadas) {
+            nombresJornadas.add(getString(R.string.jornada_numero, jornada.getNumero()));
+        }
+
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                nombresJornadas
+        );
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerJornada.setAdapter(adapterSpinner);
+
+        spinnerJornada.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                jornadaFiltro = listaJornadas.get(position).getId();
+                filtrarPartidos(filtroActual);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+    }
+
     private void cargarEquiposYPartidos() {
         progressBar.setVisibility(View.VISIBLE);
         rvPartidos.setVisibility(View.GONE);
@@ -189,9 +241,9 @@ public class MainActivity extends BaseActivity {
 
         List<Partido> partidosFiltrados = new ArrayList<>();
         for (Partido partido : todosPartidos) {
-            if (partido.getEstado().equals(estado)) {
-                partidosFiltrados.add(partido);
-            }
+            if (!partido.getEstado().equals(estado)) continue;
+            if (!partido.getJornadaId().equals(jornadaFiltro)) continue;
+            partidosFiltrados.add(partido);
         }
 
         if (partidosFiltrados.isEmpty()) {
@@ -237,7 +289,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void conectarWebSocket() {
-            long usuarioId = SessionManager.getUsuarioId(this);
-            WebSocketManager.getInstance().conectarNotificaciones(this, usuarioId);
+        long usuarioId = SessionManager.getUsuarioId(this);
+        WebSocketManager.getInstance().conectarNotificaciones(this, usuarioId);
     }
 }

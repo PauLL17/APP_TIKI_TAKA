@@ -45,6 +45,7 @@
     <string name="navigation_drawer_open">Open menu</string>
     <string name="navigation_drawer_close">Close menu</string>
     <string name="cerrar_sesion">Log out</string>
+    <string name="jornada_numero">Matchday %d</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Create your account</string>
