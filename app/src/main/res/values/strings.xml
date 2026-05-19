@@ -46,6 +46,8 @@
     <string name="navigation_drawer_close">Cerrar menú</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="jornada_numero">Jornada %d</string>
+    <string name="aniadir_partido">Añadir partido</string>
+    <string name="partido_creado">Partido creado correctamente</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Crea tu cuenta</string>

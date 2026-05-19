@@ -46,6 +46,9 @@
     <string name="navigation_drawer_close">Close menu</string>
     <string name="cerrar_sesion">Log out</string>
     <string name="jornada_numero">Matchday %d</string>
+    <string name="hint_fecha_hora">Date and time (e.g. 2025-05-20T18:00:00)</string>
+    <string name="aniadir_partido">Add match</string>
+    <string name="partido_creado">Match created successfully</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Create your account</string>
@@ -76,7 +79,6 @@
     <string name="hint_minuto_actual">Current minute</string>
     <string name="gol_creado">Goal registered successfully</string>
     <string name="partido_actualizado">Match updated successfully</string>
-    <string name="hint_fecha_hora">Date and time (yyyy-MM-ddTHH:mm:ss)</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>
