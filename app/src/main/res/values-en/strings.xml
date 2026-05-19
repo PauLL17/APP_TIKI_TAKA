@@ -40,6 +40,8 @@
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
     <string name="error_cargar_datos">Error loading data</string>
+    <string name="error_sin_permisos">You don\'t have permission to perform this action</string>
+    <string name="error_sesion_expirada">Session expired, please log in again</string>
     <string name="navigation_drawer_open">Open menu</string>
     <string name="navigation_drawer_close">Close menu</string>
     <string name="cerrar_sesion">Log out</string>

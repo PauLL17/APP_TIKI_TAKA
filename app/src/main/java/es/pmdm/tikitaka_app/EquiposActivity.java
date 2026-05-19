@@ -109,8 +109,7 @@ public class EquiposActivity extends BaseActivity {
             @Override
             public void onError(UtilREST.Response r) {
                 progressBar.setVisibility(View.GONE);
-                ToastPersonalizado.mostrarError(EquiposActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(EquiposActivity.this, r);
             }
         });
     }
@@ -207,8 +206,7 @@ public class EquiposActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(EquiposActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(EquiposActivity.this, r);
                 }
             });
         } catch (Exception e) {
@@ -250,8 +248,7 @@ public class EquiposActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(EquiposActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(EquiposActivity.this, r);
             }
         });
     }

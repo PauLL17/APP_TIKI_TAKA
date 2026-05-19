@@ -97,8 +97,7 @@ public class BusquedaJugadoresActivity extends BaseActivity
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(BusquedaJugadoresActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(BusquedaJugadoresActivity.this, r);
             }
         });
     }

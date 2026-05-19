@@ -125,8 +125,7 @@ public class DetallePartidoActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetallePartidoActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
             }
         });
     }
@@ -157,16 +156,14 @@ public class DetallePartidoActivity extends BaseActivity {
 
                     @Override
                     public void onError(UtilREST.Response r2) {
-                        ToastPersonalizado.mostrarError(DetallePartidoActivity.this,
-                                getString(R.string.error_cargar_datos));
+                        ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
                     }
                 });
             }
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetallePartidoActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
             }
         });
     }
@@ -447,8 +444,7 @@ public class DetallePartidoActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(DetallePartidoActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
                 }
             });
         } catch (Exception e) {
@@ -521,8 +517,7 @@ public class DetallePartidoActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(DetallePartidoActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
                 }
             });
         } catch (Exception e) {

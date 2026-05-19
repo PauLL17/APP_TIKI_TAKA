@@ -40,6 +40,8 @@
     <string name="loading">Cargando...</string>
     <string name="error">Error</string>
     <string name="error_cargar_datos">Error al cargar los datos</string>
+    <string name="error_sin_permisos">No tienes permisos para realizar esta acción</string>
+    <string name="error_sesion_expirada">Sesión expirada, vuelve a iniciar sesión</string>
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>
     <string name="cerrar_sesion">Cerrar sesión</string>

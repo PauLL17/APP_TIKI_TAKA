@@ -89,8 +89,7 @@ public class DetalleJugadorActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetalleJugadorActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(DetalleJugadorActivity.this, r);
             }
         });
     }
@@ -221,8 +220,7 @@ public class DetalleJugadorActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(DetalleJugadorActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(DetalleJugadorActivity.this, r);
                 }
             });
         } catch (Exception e) {
@@ -258,8 +256,7 @@ public class DetalleJugadorActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetalleJugadorActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(DetalleJugadorActivity.this, r);
             }
         });
     }

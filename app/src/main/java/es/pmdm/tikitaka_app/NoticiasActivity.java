@@ -93,8 +93,7 @@ public class NoticiasActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(NoticiasActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(NoticiasActivity.this, r);
             }
         });
     }
@@ -113,8 +112,7 @@ public class NoticiasActivity extends BaseActivity {
             @Override
             public void onError(UtilREST.Response r) {
                 progressBar.setVisibility(View.GONE);
-                ToastPersonalizado.mostrarError(NoticiasActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(NoticiasActivity.this, r);
             }
         });
     }
@@ -140,8 +138,7 @@ public class NoticiasActivity extends BaseActivity {
             @Override
             public void onError(UtilREST.Response r) {
                 progressBar.setVisibility(View.GONE);
-                ToastPersonalizado.mostrarError(NoticiasActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(NoticiasActivity.this, r);
             }
         });
     }
@@ -258,8 +255,7 @@ public class NoticiasActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(NoticiasActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(NoticiasActivity.this, r);
                 }
             });
         } catch (Exception e) {
@@ -320,8 +316,7 @@ public class NoticiasActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(NoticiasActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(NoticiasActivity.this, r);
             }
         });
     }
