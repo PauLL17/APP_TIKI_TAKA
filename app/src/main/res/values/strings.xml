@@ -29,7 +29,6 @@
     <string name="preferences">Preferencias</string>
     <string name="favorite_team">Equipo favorito</string>
     <string name="notifications">Notificaciones</string>
-    <string name="logout">Cerrar sesión</string>
 
     <!-- Mensajes -->
     <string name="login_success">¡Bienvenido!</string>
@@ -51,6 +50,7 @@
     <string name="eliminar_partido">Eliminar partido</string>
     <string name="partido_eliminado">Partido eliminado correctamente</string>
     <string name="confirmar_eliminar">¿Eliminar el partido %s vs %s?</string>
+    <string name="error_mismo_equipo">El equipo local y visitante no pueden ser el mismo</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Crea tu cuenta</string>

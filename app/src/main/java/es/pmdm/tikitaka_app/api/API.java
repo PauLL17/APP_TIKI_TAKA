@@ -25,22 +25,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/" + id, null, token, listener);
     }
 
-    public static void getPartidosByEstado(String estado, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/estado/" + estado, null, token, listener);
-    }
-
-    public static void getPartidosByJornada(long jornadaId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/jornada/" + jornadaId, null, token, listener);
-    }
-
-    public static void getPartidosByEquipo(long equipoId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/equipo/" + equipoId, null, token, listener);
-    }
-
-    public static void getEnfrentamientos(long equipo1Id, long equipo2Id, String token, UtilREST.OnResponseListener listener) { //Consulta JPA
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/partidos/enfrentamientos/" + equipo1Id + "/" + equipo2Id, null, token, listener);
-    }
-
     public static void postPartido(JSONObject body, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/partidos", body.toString(), token, listener);
     }
@@ -129,10 +113,6 @@ public class API {
     }
 
     // ALINEACIONES
-    public static void getAlineacionesByPartido(long partidoId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/alineaciones/partido/" + partidoId, null, token, listener);
-    }
-
     public static void getTitularesByPartido(long partidoId, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/alineaciones/partido/" + partidoId + "/titulares", null, token, listener);
     }
@@ -159,23 +139,6 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jornadas", null, token, listener);
     }
 
-    public static void getJornada(long id, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jornadas/" + id, null, token, listener);
-    }
-
-    public static void getJornadasByCompeticion(long competicionId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jornadas/competicion/" + competicionId, null, token, listener);
-    }
-
-    // COMPETICIONES
-    public static void getCompeticiones(String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/competiciones", null, token, listener);
-    }
-
-    public static void getCompeticion(long id, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/competiciones/" + id, null, token, listener);
-    }
-
     // NOTICIAS
     public static void getNoticia(long id, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/noticias/" + id, null, token, listener);
@@ -195,15 +158,6 @@ public class API {
 
     public static void postNoticia(JSONObject body, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/noticias", body.toString(), token, listener);
-    }
-
-    // NOTIFICACIONES
-    public static void getNotificacionesByUsuario(long usuarioId, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/notificaciones/usuario/" + usuarioId, null, token, listener);
-    }
-
-    public static void deleteNotificacion(long id, String token, UtilREST.OnResponseListener listener) {
-        UtilREST.runQuery(UtilREST.QueryType.DELETE, BASE_URL + "api/notificaciones/" + id, null, token, listener);
     }
 
     // USUARIOS

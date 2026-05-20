@@ -29,7 +29,6 @@
     <string name="preferences">Preferences</string>
     <string name="favorite_team">Favorite team</string>
     <string name="notifications">Notifications</string>
-    <string name="logout">Sign out</string>
 
     <!-- Mensajes -->
     <string name="login_success">Welcome!</string>
@@ -49,6 +48,7 @@
     <string name="hint_fecha_hora">Date and time (e.g. 2025-05-20T18:00:00)</string>
     <string name="aniadir_partido">Add match</string>
     <string name="partido_creado">Match created successfully</string>
+    <string name="error_mismo_equipo">Home and away teams cannot be the same</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Create your account</string>

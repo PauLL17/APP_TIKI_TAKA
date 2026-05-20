@@ -298,6 +298,11 @@ public class MainActivity extends BaseActivity {
                     Jornada jornada        = listaJornadas.get(spinnerJornada.getSelectedItemPosition());
                     String estado          = estados[spinnerEstado.getSelectedItemPosition()];
 
+                    if (equipoLocal.getId().equals(equipoVisitante.getId())) {
+                        ToastPersonalizado.mostrarError(this, getString(R.string.error_mismo_equipo));
+                        return;
+                    }
+
                     crearPartido(equipoLocal.getId(), equipoVisitante.getId(),
                             jornada.getId(), fechaHora, estado);
                 })
