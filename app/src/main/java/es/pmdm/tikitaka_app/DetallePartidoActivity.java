@@ -370,6 +370,12 @@ public class DetallePartidoActivity extends BaseActivity {
             mostrarDialogoEditarPartido();
             return true;
         }
+
+        if (item.getItemId() == R.id.action_aniadir_titular) {
+            mostrarDialogoAnadirTitular();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -544,5 +550,70 @@ public class DetallePartidoActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         WebSocketManager.getInstance().desconectarMarcador();
+    }
+
+    private void mostrarDialogoAnadirTitular() {
+        if (jugadoresCache.isEmpty()) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_cargar_datos));
+            return;
+        }
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialogo_gol, null);
+
+        Spinner spinnerJugador = dialogView.findViewById(R.id.spinnerJugador);
+        // Oculto el resto de campos que no necesito
+        dialogView.findViewById(R.id.etMinuto).setVisibility(View.GONE);
+        dialogView.findViewById(R.id.spinnerTipoGol).setVisibility(View.GONE);
+
+        List<Jugador> jugadoresList = new ArrayList<>(jugadoresCache.values());
+        List<String> nombresJugadores = new ArrayList<>();
+        for (Jugador j : jugadoresList) {
+            nombresJugadores.add(j.getNombreCompleto());
+        }
+
+        ArrayAdapter<String> adapterJugadores = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, nombresJugadores);
+        adapterJugadores.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerJugador.setAdapter(adapterJugadores);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.aniadir_titular))
+                .setView(dialogView)
+                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
+                    Jugador jugadorSeleccionado = jugadoresList.get(spinnerJugador.getSelectedItemPosition());
+                    anadirTitular(jugadorSeleccionado.getId());
+                })
+                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private void anadirTitular(long jugadorId) {
+        String token = SessionManager.getToken(this);
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("partidoId", partidoId);
+            body.put("jugadorId", jugadorId);
+            body.put("titular", true);
+
+            API.postAlineacion(body, token, new UtilREST.OnResponseListener() {
+                @Override
+                public void onSuccess(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarCorto(DetallePartidoActivity.this,
+                            getString(R.string.titular_aniadido));
+                    cargarAlineaciones();
+                }
+
+                @Override
+                public void onError(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

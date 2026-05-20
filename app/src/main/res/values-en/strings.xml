@@ -82,6 +82,8 @@
     <string name="eliminar_partido">Delete match</string>
     <string name="partido_eliminado">Match deleted successfully</string>
     <string name="confirmar_eliminar">Delete match %s vs %s?</string>
+    <string name="aniadir_titular">Add starter</string>
+    <string name="titular_aniadido">Starter added successfully</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>

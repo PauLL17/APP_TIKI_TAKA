@@ -82,6 +82,8 @@
     <string name="gol_creado">Gol registrado correctamente</string>
     <string name="partido_actualizado">Partido actualizado correctamente</string>
     <string name="hint_fecha_hora">Fecha y hora (yyyy-MM-ddTHH:mm:ss)</string>
+    <string name="aniadir_titular">Añadir titular</string>
+    <string name="titular_aniadido">Titular añadido correctamente</string>
 
     <!-- Equipos -->
     <string name="equipos">Equipos</string>
