@@ -48,6 +48,9 @@
     <string name="jornada_numero">Jornada %d</string>
     <string name="aniadir_partido">Añadir partido</string>
     <string name="partido_creado">Partido creado correctamente</string>
+    <string name="eliminar_partido">Eliminar partido</string>
+    <string name="partido_eliminado">Partido eliminado correctamente</string>
+    <string name="confirmar_eliminar">¿Eliminar el partido %s vs %s?</string>
 
     <!-- Registro -->
     <string name="register_subtitle">Crea tu cuenta</string>

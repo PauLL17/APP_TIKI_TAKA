@@ -79,6 +79,9 @@
     <string name="hint_minuto_actual">Current minute</string>
     <string name="gol_creado">Goal registered successfully</string>
     <string name="partido_actualizado">Match updated successfully</string>
+    <string name="eliminar_partido">Delete match</string>
+    <string name="partido_eliminado">Match deleted successfully</string>
+    <string name="confirmar_eliminar">Delete match %s vs %s?</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>

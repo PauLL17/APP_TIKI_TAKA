@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,18 @@ import es.pmdm.tikitaka_app.modelos.Partido;
 
 public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.PartidoViewHolder> {
 
+    public interface OnPartidoListener {
+        void onEliminarPartido(Partido partido);
+    }
+
     private List<Partido> partidos;
     private Context context;
+    private OnPartidoListener listener;
 
-    public PartidosAdapter(List<Partido> partidos, Context context) {
+    public PartidosAdapter(List<Partido> partidos, Context context, OnPartidoListener listener) {
         this.partidos = partidos;
         this.context  = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -99,6 +106,20 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
             intent.putExtra("partido_id", partido.getId());
             context.startActivity(intent);
         });
+
+        holder.itemView.setOnLongClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(context, v);
+            popupMenu.inflate(R.menu.menu_contextual_partido);
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.action_eliminar_partido) {
+                    listener.onEliminarPartido(partido);
+                    return true;
+                }
+                return false;
+            });
+            popupMenu.show();
+            return true;
+        });
     }
 
     @Override
@@ -118,15 +139,15 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
 
         public PartidoViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvCompeticion = itemView.findViewById(R.id.tvCompeticion);
-            tvEstado = itemView.findViewById(R.id.tvEstado);
-            tvEquipoLocal = itemView.findViewById(R.id.tvEquipoLocal);
+            tvCompeticion     = itemView.findViewById(R.id.tvCompeticion);
+            tvEstado          = itemView.findViewById(R.id.tvEstado);
+            tvEquipoLocal     = itemView.findViewById(R.id.tvEquipoLocal);
             tvEquipoVisitante = itemView.findViewById(R.id.tvEquipoVisitante);
-            tvGolesLocal = itemView.findViewById(R.id.tvGolesLocal);
-            tvGolesVisitante = itemView.findViewById(R.id.tvGolesVisitante);
-            tvMinuto = itemView.findViewById(R.id.tvMinuto);
-            tvFechaHora = itemView.findViewById(R.id.tvFechaHora);
-            ivEscudoLocal = itemView.findViewById(R.id.ivEscudoLocal);
+            tvGolesLocal      = itemView.findViewById(R.id.tvGolesLocal);
+            tvGolesVisitante  = itemView.findViewById(R.id.tvGolesVisitante);
+            tvMinuto          = itemView.findViewById(R.id.tvMinuto);
+            tvFechaHora       = itemView.findViewById(R.id.tvFechaHora);
+            ivEscudoLocal     = itemView.findViewById(R.id.ivEscudoLocal);
             ivEscudoVisitante = itemView.findViewById(R.id.ivEscudoVisitante);
         }
     }

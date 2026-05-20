@@ -138,7 +138,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        adapter = new PartidosAdapter(new ArrayList<>(), this);
+        adapter = new PartidosAdapter(new ArrayList<>(), this, partido -> {
+            mostrarDialogoConfirmarEliminar(partido);
+        });
         rvPartidos.setLayoutManager(new LinearLayoutManager(this));
         rvPartidos.setAdapter(adapter);
     }
@@ -335,6 +337,39 @@ public class MainActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void mostrarDialogoConfirmarEliminar(Partido partido) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.eliminar_partido))
+                .setMessage(getString(R.string.confirmar_eliminar,
+                        partido.getEquipoLocal().getNombre(),
+                        partido.getEquipoVisitante().getNombre()))
+                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
+                    eliminarPartido(partido.getId());
+                })
+                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private void eliminarPartido(long partidoId) {
+        String token = SessionManager.getToken(this);
+
+        API.deletePartido(partidoId, token, new UtilREST.OnResponseListener() {
+            @Override
+            public void onSuccess(UtilREST.Response r) {
+                ToastPersonalizado.mostrarCorto(MainActivity.this,
+                        getString(R.string.partido_eliminado));
+                cargarEquiposYPartidos();
+            }
+
+            @Override
+            public void onError(UtilREST.Response r) {
+                ToastPersonalizado.mostrarErrorApi(MainActivity.this, r);
+            }
+        });
     }
 
     private void filtrarPartidos(String estado) {
