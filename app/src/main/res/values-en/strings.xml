@@ -84,6 +84,10 @@
     <string name="confirmar_eliminar">Delete match %s vs %s?</string>
     <string name="aniadir_titular">Add starter</string>
     <string name="titular_aniadido">Starter added successfully</string>
+    <string name="local">Home</string>
+    <string name="visitante">Away</string>
+    <string name="gestionar_estadisticas">Manage statistics</string>
+    <string name="estadisticas_guardadas">Statistics saved successfully</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>

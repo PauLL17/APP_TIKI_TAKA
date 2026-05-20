@@ -41,11 +41,11 @@ public class DetallePartidoActivity extends BaseActivity {
     private TextView tvNombreEquipoLocal, tvNombreEquipoVisitante;
     private View rowPosesion, rowTiros, rowTirosPuerta, rowCorners, rowFaltas;
     private ListView lvEventos, lvTitularesLocal, lvTitularesVisitante;
-    private ProgressBar progressBar;
 
     private long partidoId;
     private Partido partido;
     private Map<Long, Jugador> jugadoresCache = new HashMap<>();
+    private Estadistica estadisticaActual = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,12 +174,14 @@ public class DetallePartidoActivity extends BaseActivity {
         API.getEstadisticasByPartido(partidoId, token, new UtilREST.OnResponseListener() {
             @Override
             public void onSuccess(UtilREST.Response r) {
-                Estadistica est = UtilJSONParser.parseEstadistica(r.content);
-                mostrarEstadisticas(est);
+                estadisticaActual = UtilJSONParser.parseEstadistica(r.content);
+                mostrarEstadisticas(estadisticaActual);
             }
 
             @Override
-            public void onError(UtilREST.Response r) {}
+            public void onError(UtilREST.Response r) {
+                estadisticaActual = null;
+            }
         });
     }
 
@@ -373,6 +375,11 @@ public class DetallePartidoActivity extends BaseActivity {
 
         if (item.getItemId() == R.id.action_aniadir_titular) {
             mostrarDialogoAnadirTitular();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_gestionar_estadisticas) {
+            mostrarDialogoGestionarEstadisticas();
             return true;
         }
 
@@ -612,6 +619,117 @@ public class DetallePartidoActivity extends BaseActivity {
                     ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
                 }
             });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarDialogoGestionarEstadisticas() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialogo_estadisticas, null);
+
+        EditText etPosesionLocal       = dialogView.findViewById(R.id.etPosesionLocal);
+        EditText etPosesionVisitante   = dialogView.findViewById(R.id.etPosesionVisitante);
+        EditText etTirosLocal          = dialogView.findViewById(R.id.etTirosLocal);
+        EditText etTirosVisitante      = dialogView.findViewById(R.id.etTirosVisitante);
+        EditText etTirosPuertaLocal    = dialogView.findViewById(R.id.etTirosPuertaLocal);
+        EditText etTirosPuertaVisitante = dialogView.findViewById(R.id.etTirosPuertaVisitante);
+        EditText etCornersLocal        = dialogView.findViewById(R.id.etCornersLocal);
+        EditText etCornersVisitante    = dialogView.findViewById(R.id.etCornersVisitante);
+        EditText etFaltasLocal         = dialogView.findViewById(R.id.etFaltasLocal);
+        EditText etFaltasVisitante     = dialogView.findViewById(R.id.etFaltasVisitante);
+
+        if (estadisticaActual != null) {
+            etPosesionLocal.setText(String.valueOf(estadisticaActual.getPosesionLocal()));
+            etPosesionVisitante.setText(String.valueOf(estadisticaActual.getPosesionVisitante()));
+            etTirosLocal.setText(String.valueOf(estadisticaActual.getTirosLocal()));
+            etTirosVisitante.setText(String.valueOf(estadisticaActual.getTirosVisitante()));
+            etTirosPuertaLocal.setText(String.valueOf(estadisticaActual.getTirosAPuertaLocal()));
+            etTirosPuertaVisitante.setText(String.valueOf(estadisticaActual.getTirosAPuertaVisitante()));
+            etCornersLocal.setText(String.valueOf(estadisticaActual.getCornersLocal()));
+            etCornersVisitante.setText(String.valueOf(estadisticaActual.getCornersVisitante()));
+            etFaltasLocal.setText(String.valueOf(estadisticaActual.getFaltasLocal()));
+            etFaltasVisitante.setText(String.valueOf(estadisticaActual.getFaltasVisitante()));
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.gestionar_estadisticas))
+                .setView(dialogView)
+                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
+                    try {
+                        int posesionLocal        = Integer.parseInt(etPosesionLocal.getText().toString().trim().isEmpty() ? "0" : etPosesionLocal.getText().toString().trim());
+                        int posesionVisitante    = Integer.parseInt(etPosesionVisitante.getText().toString().trim().isEmpty() ? "0" : etPosesionVisitante.getText().toString().trim());
+                        int tirosLocal           = Integer.parseInt(etTirosLocal.getText().toString().trim().isEmpty() ? "0" : etTirosLocal.getText().toString().trim());
+                        int tirosVisitante       = Integer.parseInt(etTirosVisitante.getText().toString().trim().isEmpty() ? "0" : etTirosVisitante.getText().toString().trim());
+                        int tirosPuertaLocal     = Integer.parseInt(etTirosPuertaLocal.getText().toString().trim().isEmpty() ? "0" : etTirosPuertaLocal.getText().toString().trim());
+                        int tirosPuertaVisitante = Integer.parseInt(etTirosPuertaVisitante.getText().toString().trim().isEmpty() ? "0" : etTirosPuertaVisitante.getText().toString().trim());
+                        int cornersLocal         = Integer.parseInt(etCornersLocal.getText().toString().trim().isEmpty() ? "0" : etCornersLocal.getText().toString().trim());
+                        int cornersVisitante     = Integer.parseInt(etCornersVisitante.getText().toString().trim().isEmpty() ? "0" : etCornersVisitante.getText().toString().trim());
+                        int faltasLocal          = Integer.parseInt(etFaltasLocal.getText().toString().trim().isEmpty() ? "0" : etFaltasLocal.getText().toString().trim());
+                        int faltasVisitante      = Integer.parseInt(etFaltasVisitante.getText().toString().trim().isEmpty() ? "0" : etFaltasVisitante.getText().toString().trim());
+
+                        gestionarEstadisticas(posesionLocal, posesionVisitante, tirosLocal, tirosVisitante,
+                                tirosPuertaLocal, tirosPuertaVisitante, cornersLocal, cornersVisitante,
+                                faltasLocal, faltasVisitante);
+                    } catch (NumberFormatException e) {
+                        ToastPersonalizado.mostrarError(DetallePartidoActivity.this, getString(R.string.empty_fields));
+                    }
+                })
+                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void gestionarEstadisticas(int posesionLocal, int posesionVisitante,
+                                       int tirosLocal, int tirosVisitante,
+                                       int tirosPuertaLocal, int tirosPuertaVisitante,
+                                       int cornersLocal, int cornersVisitante,
+                                       int faltasLocal, int faltasVisitante) {
+        String token = SessionManager.getToken(this);
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("partidoId", partidoId);
+            body.put("posesionLocal", posesionLocal);
+            body.put("posesionVisitante", posesionVisitante);
+            body.put("tirosLocal", tirosLocal);
+            body.put("tirosVisitante", tirosVisitante);
+            body.put("tirosAPuertaLocal", tirosPuertaLocal);
+            body.put("tirosAPuertaVisitante", tirosPuertaVisitante);
+            body.put("cornersLocal", cornersLocal);
+            body.put("cornersVisitante", cornersVisitante);
+            body.put("faltasLocal", faltasLocal);
+            body.put("faltasVisitante", faltasVisitante);
+
+            if (estadisticaActual == null) {
+                API.postEstadistica(body, token, new UtilREST.OnResponseListener() {
+                    @Override
+                    public void onSuccess(UtilREST.Response r) {
+                        ToastPersonalizado.mostrarCorto(DetallePartidoActivity.this,
+                                getString(R.string.estadisticas_guardadas));
+                        cargarEstadisticas();
+                    }
+
+                    @Override
+                    public void onError(UtilREST.Response r) {
+                        ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
+                    }
+                });
+            } else {
+                body.put("id", estadisticaActual.getId());
+                API.putEstadistica(body, token, new UtilREST.OnResponseListener() {
+                    @Override
+                    public void onSuccess(UtilREST.Response r) {
+                        ToastPersonalizado.mostrarCorto(DetallePartidoActivity.this,
+                                getString(R.string.estadisticas_guardadas));
+                        cargarEstadisticas();
+                    }
+
+                    @Override
+                    public void onError(UtilREST.Response r) {
+                        ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
+                    }
+                });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

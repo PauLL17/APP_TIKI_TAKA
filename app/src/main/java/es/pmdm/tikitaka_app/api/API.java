@@ -146,6 +146,14 @@ public class API {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/estadisticas/partido/" + partidoId, null, token, listener);
     }
 
+    public static void postEstadistica(JSONObject body, String token, UtilREST.OnResponseListener listener) {
+        UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/estadisticas", body.toString(), token, listener);
+    }
+
+    public static void putEstadistica(JSONObject body, String token, UtilREST.OnResponseListener listener) {
+        UtilREST.runQuery(UtilREST.QueryType.PUT, BASE_URL + "api/estadisticas", body.toString(), token, listener);
+    }
+
     // JORNADAS
     public static void getJornadas(String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.GET, BASE_URL + "api/jornadas", null, token, listener);

@@ -84,6 +84,10 @@
     <string name="hint_fecha_hora">Fecha y hora (yyyy-MM-ddTHH:mm:ss)</string>
     <string name="aniadir_titular">Añadir titular</string>
     <string name="titular_aniadido">Titular añadido correctamente</string>
+    <string name="local">Local</string>
+    <string name="visitante">Visitante</string>
+    <string name="gestionar_estadisticas">Gestionar estadísticas</string>
+    <string name="estadisticas_guardadas">Estadísticas guardadas correctamente</string>
 
     <!-- Equipos -->
     <string name="equipos">Equipos</string>

@@ -16,4 +16,9 @@
         android:id="@+id/action_aniadir_titular"
         android:title="@string/aniadir_titular"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_gestionar_estadisticas"
+        android:title="@string/gestionar_estadisticas"
+        app:showAsAction="never"/>
 </menu>
