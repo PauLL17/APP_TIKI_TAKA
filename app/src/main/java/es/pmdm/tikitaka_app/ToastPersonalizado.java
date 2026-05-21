@@ -41,18 +41,21 @@ public class ToastPersonalizado {
 
     public static void mostrarErrorApi(Context context, UtilREST.Response response) {
         String mensaje;
+
         try {
             JSONObject json = new JSONObject(response.content);
-            mensaje = json.optString("message", context.getString(R.string.error_cargar_datos));
-        } catch (Exception e) {
-            if (response.responseCode == 403) {
-                mensaje = context.getString(R.string.error_sin_permisos);
-            } else if (response.responseCode == 401) {
+            String apiMessage = json.optString("message", "");
+            if (apiMessage.contains("JWT expired")) {
                 mensaje = context.getString(R.string.error_sesion_expirada);
+            } else if (apiMessage.contains("Access Denied")) {
+                mensaje = context.getString(R.string.error_sin_permisos);
             } else {
-                mensaje = context.getString(R.string.error_cargar_datos);
+                mensaje = apiMessage.isEmpty() ? context.getString(R.string.error_cargar_datos) : apiMessage;
             }
+        } catch (Exception e) {
+            mensaje = context.getString(R.string.error_cargar_datos);
         }
+
         mostrar(context, mensaje, Toast.LENGTH_LONG);
     }
 }

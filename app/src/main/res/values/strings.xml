@@ -62,6 +62,8 @@
     <string name="already_have_account">¿Ya tienes cuenta? <b>Inicia sesión</b></string>
     <string name="register_success">¡Cuenta creada correctamente!</string>
     <string name="register_error">Error al registrar el usuario</string>
+    <string name="error_email_invalido">El formato del email no es válido</string>
+    <string name="error_password_corta">La contraseña debe tener al menos 6 caracteres</string>
 
     <!-- Detalle Partido -->
     <string name="estadisticas">Estadísticas</string>

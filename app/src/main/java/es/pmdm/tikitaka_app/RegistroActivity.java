@@ -94,6 +94,16 @@ public class RegistroActivity extends BaseActivity {
             return;
         }
 
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_email_invalido));
+            return;
+        }
+
+        if (password.length() < 6) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_password_corta));
+            return;
+        }
+
         if (listaEquipos.isEmpty()) {
             ToastPersonalizado.mostrarError(this, getString(R.string.register_error));
             return;

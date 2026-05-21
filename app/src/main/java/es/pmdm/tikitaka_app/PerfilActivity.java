@@ -100,8 +100,7 @@ public class PerfilActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(PerfilActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(PerfilActivity.this, r);
             }
         });
     }
@@ -134,8 +133,7 @@ public class PerfilActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(PerfilActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(PerfilActivity.this, r);
                 }
             });
         } catch (Exception e) {

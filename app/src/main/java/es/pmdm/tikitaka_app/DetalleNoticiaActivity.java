@@ -59,8 +59,7 @@ public class DetalleNoticiaActivity extends BaseActivity {
 
             @Override
             public void onError(UtilREST.Response r) {
-                ToastPersonalizado.mostrarError(DetalleNoticiaActivity.this,
-                        getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(DetalleNoticiaActivity.this, r);
             }
         });
     }

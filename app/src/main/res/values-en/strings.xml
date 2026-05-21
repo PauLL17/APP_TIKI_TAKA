@@ -60,6 +60,8 @@
     <string name="already_have_account">Already have an account? <b>Sign in</b></string>
     <string name="register_success">Account created successfully!</string>
     <string name="register_error">Error creating account</string>
+    <string name="error_email_invalido">Invalid email format</string>
+    <string name="error_password_corta">Password must be at least 6 characters</string>
 
     <!-- Detalle Partido -->
     <string name="estadisticas">Statistics</string>

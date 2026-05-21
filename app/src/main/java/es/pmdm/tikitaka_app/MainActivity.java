@@ -215,7 +215,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onError(UtilREST.Response r) {
                 progressBar.setVisibility(View.GONE);
-                ToastPersonalizado.mostrarError(MainActivity.this, getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(MainActivity.this, r);
             }
         });
     }
@@ -240,7 +240,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onError(UtilREST.Response r) {
                 progressBar.setVisibility(View.GONE);
-                ToastPersonalizado.mostrarError(MainActivity.this, getString(R.string.error_cargar_datos));
+                ToastPersonalizado.mostrarErrorApi(MainActivity.this, r);
             }
         });
     }

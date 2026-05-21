@@ -267,8 +267,7 @@ public class DetalleEquipoActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(DetalleEquipoActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(DetalleEquipoActivity.this, r);
                 }
             });
         } catch (Exception e) {
@@ -341,8 +340,7 @@ public class DetalleEquipoActivity extends BaseActivity {
 
                 @Override
                 public void onError(UtilREST.Response r) {
-                    ToastPersonalizado.mostrarError(DetalleEquipoActivity.this,
-                            getString(R.string.error_cargar_datos));
+                    ToastPersonalizado.mostrarErrorApi(DetalleEquipoActivity.this, r);
                 }
             });
         } catch (Exception e) {
