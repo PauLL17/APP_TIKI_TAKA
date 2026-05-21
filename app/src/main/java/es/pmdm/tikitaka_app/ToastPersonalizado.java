@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import es.pmdm.tikitaka_app.api.UtilREST;
 
 public class ToastPersonalizado {
@@ -39,13 +41,18 @@ public class ToastPersonalizado {
 
     public static void mostrarErrorApi(Context context, UtilREST.Response response) {
         String mensaje;
-        if (response.responseCode == 403) {
-            mensaje = context.getString(R.string.error_sin_permisos);
-        } else if (response.responseCode == 401) {
-            mensaje = context.getString(R.string.error_sesion_expirada);
-        } else {
-            mensaje = context.getString(R.string.error_cargar_datos);
+        try {
+            JSONObject json = new JSONObject(response.content);
+            mensaje = json.optString("message", context.getString(R.string.error_cargar_datos));
+        } catch (Exception e) {
+            if (response.responseCode == 403) {
+                mensaje = context.getString(R.string.error_sin_permisos);
+            } else if (response.responseCode == 401) {
+                mensaje = context.getString(R.string.error_sesion_expirada);
+            } else {
+                mensaje = context.getString(R.string.error_cargar_datos);
+            }
         }
-        mostrar(context, mensaje, Toast.LENGTH_SHORT);
+        mostrar(context, mensaje, Toast.LENGTH_LONG);
     }
 }
