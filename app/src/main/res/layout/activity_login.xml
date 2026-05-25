@@ -55,10 +55,10 @@
 
             <!-- Campo Email -->
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etNombreUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="@string/nombre_usuario"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
                 android:layout_marginBottom="16dp"

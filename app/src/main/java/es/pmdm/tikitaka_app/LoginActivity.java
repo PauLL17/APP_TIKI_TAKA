@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initViews() {
-        etNombreUsuario = findViewById(R.id.etEmail);
+        etNombreUsuario = findViewById(R.id.etNombreUsuario);
         etPassword      = findViewById(R.id.etPassword);
         btnLogin        = findViewById(R.id.btnLogin);
         tvRegister      = findViewById(R.id.tvRegister);

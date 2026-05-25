@@ -6,7 +6,7 @@
 
     <!-- Login -->
     <string name="login_title">Sign in</string>
-    <string name="email">Email</string>
+    <string name="nombre_usuario">User name</string>
     <string name="password">Password</string>
     <string name="login_button">Sign in</string>
     <string name="register_button">Sign up</string>
@@ -90,6 +90,8 @@
     <string name="visitante">Away</string>
     <string name="gestionar_estadisticas">Manage statistics</string>
     <string name="estadisticas_guardadas">Statistics saved successfully</string>
+    <string name="aniadir_tarjeta">Add card</string>
+    <string name="tarjeta_anadida">Card added successfully</string>
 
     <!-- Equipos -->
     <string name="equipos">Teams</string>

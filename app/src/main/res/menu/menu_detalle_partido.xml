@@ -21,4 +21,9 @@
         android:id="@+id/action_gestionar_estadisticas"
         android:title="@string/gestionar_estadisticas"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_aniadir_tarjeta"
+        android:title="@string/aniadir_tarjeta"
+        app:showAsAction="never"/>
 </menu>

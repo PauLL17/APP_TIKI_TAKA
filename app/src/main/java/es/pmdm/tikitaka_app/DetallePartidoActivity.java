@@ -352,40 +352,6 @@ public class DetallePartidoActivity extends BaseActivity {
         lvTitularesVisitante.setAdapter(new TitularAdapter(this, titularesVisitante));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_detalle_partido, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        if (item.getItemId() == R.id.action_aniadir_gol) {
-            mostrarDialogoAnadirGol();
-            return true;
-        }
-        if (item.getItemId() == R.id.action_editar_partido) {
-            mostrarDialogoEditarPartido();
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_aniadir_titular) {
-            mostrarDialogoAnadirTitular();
-            return true;
-        }
-
-        if (item.getItemId() == R.id.action_gestionar_estadisticas) {
-            mostrarDialogoGestionarEstadisticas();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void mostrarDialogoAnadirGol() {
         if (jugadoresCache.isEmpty()) {
             ToastPersonalizado.mostrarError(this, getString(R.string.error_cargar_datos));
@@ -733,5 +699,122 @@ public class DetallePartidoActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void mostrarDialogoAnadirTarjeta() {
+        if (jugadoresCache.isEmpty()) {
+            ToastPersonalizado.mostrarError(this, getString(R.string.error_cargar_datos));
+            return;
+        }
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialogo_gol, null);
+
+        Spinner spinnerJugador = dialogView.findViewById(R.id.spinnerJugador);
+        EditText etMinuto      = dialogView.findViewById(R.id.etMinuto);
+        Spinner spinnerTipo    = dialogView.findViewById(R.id.spinnerTipoGol);
+
+        List<String> nombresJugadores = new ArrayList<>();
+        List<Jugador> jugadoresList   = new ArrayList<>(jugadoresCache.values());
+        for (Jugador j : jugadoresList) {
+            nombresJugadores.add(j.getNombreCompleto());
+        }
+
+        ArrayAdapter<String> adapterJugadores = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, nombresJugadores);
+        adapterJugadores.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerJugador.setAdapter(adapterJugadores);
+
+        String[] tiposTarjeta = {"AMARILLA", "ROJA"};
+        ArrayAdapter<String> adapterTipo = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, tiposTarjeta);
+        adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTipo.setAdapter(adapterTipo);
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.aniadir_tarjeta))
+                .setView(dialogView)
+                .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
+                    String minutoStr = etMinuto.getText().toString().trim();
+                    if (minutoStr.isEmpty()) {
+                        ToastPersonalizado.mostrarError(this, getString(R.string.empty_fields));
+                        return;
+                    }
+                    Jugador jugadorSeleccionado = jugadoresList.get(spinnerJugador.getSelectedItemPosition());
+                    String tipo = tiposTarjeta[spinnerTipo.getSelectedItemPosition()];
+                    int minuto = Integer.parseInt(minutoStr);
+                    anadirTarjeta(jugadorSeleccionado.getId(), minuto, tipo);
+                })
+                .setNegativeButton(getString(R.string.dialogo_no), (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private void anadirTarjeta(long jugadorId, int minuto, String tipo) {
+        String token = SessionManager.getToken(this);
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("partidoId", partidoId);
+            body.put("jugadorId", jugadorId);
+            body.put("minuto", minuto);
+            body.put("tipo", tipo);
+
+            API.postTarjeta(body, token, new UtilREST.OnResponseListener() {
+                @Override
+                public void onSuccess(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarCorto(DetallePartidoActivity.this,
+                            getString(R.string.tarjeta_anadida));
+                    cargarPartido();
+                }
+
+                @Override
+                public void onError(UtilREST.Response r) {
+                    ToastPersonalizado.mostrarErrorApi(DetallePartidoActivity.this, r);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detalle_partido, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        if (item.getItemId() == R.id.action_aniadir_gol) {
+            mostrarDialogoAnadirGol();
+            return true;
+        }
+        if (item.getItemId() == R.id.action_editar_partido) {
+            mostrarDialogoEditarPartido();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_aniadir_titular) {
+            mostrarDialogoAnadirTitular();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_gestionar_estadisticas) {
+            mostrarDialogoGestionarEstadisticas();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_aniadir_tarjeta) {
+            mostrarDialogoAnadirTarjeta();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

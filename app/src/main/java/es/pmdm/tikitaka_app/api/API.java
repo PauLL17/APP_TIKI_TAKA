@@ -5,7 +5,8 @@ import org.json.JSONObject;
 // Proporciona métodos para interactuar con el API REST de Tiki-Taka.
 public class API {
     private static final String BASE_URL = "http://192.168.10.231:8080/";
-    // private static final String BASE_URL = "http://10.0.2.2:8080/";
+    //private static final String BASE_URL = "http://10.0.2.2:8080/";
+    // private static final String BASE_URL = "http://52.201.180.205/";
 
     // AUTH
     public static void login(JSONObject body, UtilREST.OnResponseListener listener) {
@@ -158,6 +159,11 @@ public class API {
 
     public static void postNoticia(JSONObject body, String token, UtilREST.OnResponseListener listener) {
         UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/noticias", body.toString(), token, listener);
+    }
+
+    //Tarjetas
+    public static void postTarjeta(JSONObject body, String token, UtilREST.OnResponseListener listener) {
+        UtilREST.runQuery(UtilREST.QueryType.POST, BASE_URL + "api/tarjetas", body.toString(), token, listener);
     }
 
     // USUARIOS
