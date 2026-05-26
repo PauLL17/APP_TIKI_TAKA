@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,9 +16,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import es.pmdm.tikitaka_app.adapters.EventoAdapter;
@@ -168,6 +170,27 @@ public class DetallePartidoActivity extends BaseActivity {
         });
     }
 
+    private void conectarWebSocketMarcador() {
+        WebSocketManager.getInstance().conectarMarcador(partidoId, (golesLocal, golesVisitante, estado) -> {
+            tvGolesLocal.setText(String.valueOf(golesLocal));
+            tvGolesVisitante.setText(String.valueOf(golesVisitante));
+
+            if (estado.equals(Partido.ESTADO_EN_VIVO)) {
+                tvMinuto.setText(getString(R.string.live_matches));
+            } else if (estado.equals(Partido.ESTADO_FINALIZADO)) {
+                tvMinuto.setText("FT");
+            } else {
+                tvMinuto.setText(formatearFecha(partido.getFechaHora()));
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        WebSocketManager.getInstance().desconectarMarcador();
+    }
+
     private void cargarEstadisticas() {
         String token = SessionManager.getToken(this);
 
@@ -254,7 +277,18 @@ public class DetallePartidoActivity extends BaseActivity {
         } else if (partido.isFinalizado()) {
             tvMinuto.setText("FT");
         } else {
-            tvMinuto.setText(partido.getFechaHora());
+            tvMinuto.setText(formatearFecha(partido.getFechaHora()));
+        }
+    }
+
+    private String formatearFecha(String fechaHora) {
+        try {
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+            Date fecha = formatoEntrada.parse(fechaHora);
+            return formatoSalida.format(fecha);
+        } catch (Exception e) {
+            return fechaHora;
         }
     }
 
@@ -461,7 +495,7 @@ public class DetallePartidoActivity extends BaseActivity {
                 .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
                     String estado    = estados[spinnerEstado.getSelectedItemPosition()];
                     String minutoStr = etMinutoActual.getText().toString().trim();
-                    String fechaHora = etFechaHora.getText().toString().trim();
+                    String fechaHora = etFechaHora.getText().toString().trim().replace(" ", "T");
                     int minutoActual = minutoStr.isEmpty() ? 0 : Integer.parseInt(minutoStr);
                     editarPartido(estado, minutoActual, fechaHora);
                 })
@@ -504,26 +538,7 @@ public class DetallePartidoActivity extends BaseActivity {
         }
     }
 
-    private void conectarWebSocketMarcador() {
-        WebSocketManager.getInstance().conectarMarcador(partidoId, (golesLocal, golesVisitante, estado) -> {
-            tvGolesLocal.setText(String.valueOf(golesLocal));
-            tvGolesVisitante.setText(String.valueOf(golesVisitante));
 
-            if (estado.equals(Partido.ESTADO_EN_VIVO)) {
-                tvMinuto.setText(getString(R.string.live_matches));
-            } else if (estado.equals(Partido.ESTADO_FINALIZADO)) {
-                tvMinuto.setText("FT");
-            } else {
-                tvMinuto.setText(partido.getFechaHora());
-            }
-        });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        WebSocketManager.getInstance().desconectarMarcador();
-    }
 
     private void mostrarDialogoAnadirTitular() {
         if (jugadoresCache.isEmpty()) {

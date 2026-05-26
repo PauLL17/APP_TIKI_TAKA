@@ -79,7 +79,7 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
                 color = context.getResources().getColor(R.color.partido_programado);
                 holder.tvMinuto.setVisibility(View.GONE);
                 holder.tvFechaHora.setVisibility(View.VISIBLE);
-                holder.tvFechaHora.setText(partido.getFechaHora());
+                holder.tvFechaHora.setText(formatearFecha(partido.getFechaHora()));
                 break;
             case Partido.ESTADO_FINALIZADO:
                 estado = context.getString(R.string.finished_matches).toUpperCase();
@@ -149,6 +149,17 @@ public class PartidosAdapter extends RecyclerView.Adapter<PartidosAdapter.Partid
             tvFechaHora       = itemView.findViewById(R.id.tvFechaHora);
             ivEscudoLocal     = itemView.findViewById(R.id.ivEscudoLocal);
             ivEscudoVisitante = itemView.findViewById(R.id.ivEscudoVisitante);
+        }
+    }
+
+    private String formatearFecha(String fechaHora) {
+        try {
+            java.text.SimpleDateFormat formatoEntrada = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.getDefault());
+            java.text.SimpleDateFormat formatoSalida = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault());
+            java.util.Date fecha = formatoEntrada.parse(fechaHora);
+            return formatoSalida.format(fecha);
+        } catch (Exception e) {
+            return fechaHora;
         }
     }
 }

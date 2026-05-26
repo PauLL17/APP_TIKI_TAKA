@@ -7,11 +7,11 @@ public class SessionManager {
     public static final String PREFS_NAME = "TikiTakaPrefs";
 
     // Claves
-    public static final String KEY_IS_LOGGED_IN     = "isLoggedIn";
-    public static final String KEY_TOKEN            = "token";
-    public static final String KEY_USUARIO_ID       = "usuarioId";
-    public static final String KEY_NOMBRE_USUARIO   = "nombreUsuario";
-    public static final String KEY_EMAIL            = "email";
+    public static final String KEY_IS_LOGGED_IN = "isLoggedIn";
+    public static final String KEY_TOKEN = "token";
+    public static final String KEY_USUARIO_ID = "usuarioId";
+    public static final String KEY_NOMBRE_USUARIO = "nombreUsuario";
+    public static final String KEY_EMAIL = "email";
     public static final String KEY_EQUIPO_FAVORITO  = "equipoFavoritoId";
 
 
@@ -28,7 +28,6 @@ public class SessionManager {
         editor.putLong(KEY_EQUIPO_FAVORITO, equipoFavoritoId);
         editor.apply();
     }
-
     public static boolean isLoggedIn(Context context) {
         return getPrefs(context).getBoolean(KEY_IS_LOGGED_IN, false);
     }

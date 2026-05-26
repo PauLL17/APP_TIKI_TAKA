@@ -286,8 +286,7 @@ public class MainActivity extends BaseActivity {
                 .setTitle(getString(R.string.aniadir_partido))
                 .setView(dialogView)
                 .setPositiveButton(getString(R.string.dialogo_si), (dialog, which) -> {
-                    String fechaHora = etFechaHora.getText().toString().trim();
-
+                    String fechaHora = etFechaHora.getText().toString().trim().replace(" ", "T");
                     if (fechaHora.isEmpty()) {
                         ToastPersonalizado.mostrarError(this, getString(R.string.empty_fields));
                         return;
