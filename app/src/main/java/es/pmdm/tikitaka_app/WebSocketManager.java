@@ -128,9 +128,9 @@ public class WebSocketManager {
     }
 
     private String getHost() {
-        return "192.168.10.231:8080";
+        //return "192.168.10.231:8080";
         //return "10.0.2.2:8080";
-        //return "52.201.180.205";
+        return "52.201.180.205";
     }
 
     public void desconectarNotificaciones() {

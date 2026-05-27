@@ -66,8 +66,18 @@ public class DetalleNoticiaActivity extends BaseActivity {
 
     private void mostrarInfoNoticia() {
         tvTitulo.setText(noticia.getTitulo());
-        tvFecha.setText(noticia.getFechaPublicacion());
+        tvFecha.setText(formatearFecha(noticia.getFechaPublicacion()));
         tvContenido.setText(noticia.getContenido());
+    }
+
+    private String formatearFecha(String fecha) {
+        try {
+            java.text.SimpleDateFormat formatoEntrada = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.getDefault());
+            java.text.SimpleDateFormat formatoSalida = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault());
+            return formatoSalida.format(formatoEntrada.parse(fecha));
+        } catch (Exception e) {
+            return fecha;
+        }
     }
 
     @Override

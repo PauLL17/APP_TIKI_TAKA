@@ -30,8 +30,19 @@ public class NoticiasAdapter extends ArrayAdapter<Noticia> {
         TextView tvFecha  = convertView.findViewById(R.id.tvFechaNoticia);
 
         tvTitulo.setText(noticia.getTitulo());
-        tvFecha.setText(noticia.getFechaPublicacion());
+        tvFecha.setText(formatearFecha(noticia.getFechaPublicacion()));
+
 
         return convertView;
+    }
+
+    private String formatearFecha(String fecha) {
+        try {
+            java.text.SimpleDateFormat formatoEntrada = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.getDefault());
+            java.text.SimpleDateFormat formatoSalida = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault());
+            return formatoSalida.format(formatoEntrada.parse(fecha));
+        } catch (Exception e) {
+            return fecha;
+        }
     }
 }
