@@ -2,12 +2,10 @@ package es.pmdm.tikitaka_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +29,10 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Jugador;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.NotificationHelper;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class DetalleEquipoActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.utilidades;
 
 import android.content.Context;
 import android.content.SharedPreferences;

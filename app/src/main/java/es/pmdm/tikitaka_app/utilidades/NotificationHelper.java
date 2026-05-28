@@ -1,14 +1,13 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.utilidades;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
+
+import es.pmdm.tikitaka_app.SettingsActivity;
 
 public class NotificationHelper {
 
@@ -67,14 +66,5 @@ public class NotificationHelper {
 
         manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(notificationId, builder.build());
-    }
-
-    public static boolean tienePermiso(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return ContextCompat.checkSelfPermission(context,
-                    android.Manifest.permission.POST_NOTIFICATIONS)
-                    == PackageManager.PERMISSION_GRANTED;
-        }
-        return true;
     }
 }

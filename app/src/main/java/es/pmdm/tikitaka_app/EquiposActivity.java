@@ -1,8 +1,6 @@
 package es.pmdm.tikitaka_app;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -15,12 +13,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import org.json.JSONObject;
 
@@ -32,6 +26,10 @@ import es.pmdm.tikitaka_app.api.API;
 import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.NotificationHelper;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class EquiposActivity extends BaseActivity {
     private Toolbar toolbar;

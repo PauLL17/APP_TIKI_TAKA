@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONObject;
@@ -27,6 +26,10 @@ import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Gol;
 import es.pmdm.tikitaka_app.modelos.Jugador;
 import es.pmdm.tikitaka_app.modelos.Tarjeta;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.NotificationHelper;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class DetalleJugadorActivity extends BaseActivity {
 

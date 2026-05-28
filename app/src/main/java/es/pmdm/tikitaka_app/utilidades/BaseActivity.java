@@ -1,13 +1,14 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.utilidades;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
+
+import es.pmdm.tikitaka_app.SettingsActivity;
 
 public class BaseActivity extends AppCompatActivity {
 

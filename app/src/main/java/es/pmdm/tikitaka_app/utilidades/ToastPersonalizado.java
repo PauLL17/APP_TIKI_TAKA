@@ -1,4 +1,4 @@
-package es.pmdm.tikitaka_app;
+package es.pmdm.tikitaka_app.utilidades;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import es.pmdm.tikitaka_app.R;
 import es.pmdm.tikitaka_app.api.UtilREST;
 
 public class ToastPersonalizado {

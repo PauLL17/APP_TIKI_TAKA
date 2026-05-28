@@ -29,6 +29,10 @@ import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
 import es.pmdm.tikitaka_app.modelos.Noticia;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.NotificationHelper;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class NoticiasActivity extends BaseActivity {
 

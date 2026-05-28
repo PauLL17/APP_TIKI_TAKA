@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONObject;
@@ -19,6 +18,9 @@ import es.pmdm.tikitaka_app.api.API;
 import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class PerfilActivity extends BaseActivity {
 

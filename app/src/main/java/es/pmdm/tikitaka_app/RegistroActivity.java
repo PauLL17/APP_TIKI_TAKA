@@ -1,14 +1,11 @@
 package es.pmdm.tikitaka_app;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
@@ -19,6 +16,8 @@ import es.pmdm.tikitaka_app.api.API;
 import es.pmdm.tikitaka_app.api.UtilJSONParser;
 import es.pmdm.tikitaka_app.api.UtilREST;
 import es.pmdm.tikitaka_app.modelos.Equipo;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
 
 public class RegistroActivity extends BaseActivity {
     private EditText etNombreUsuario, etEmail, etPassword;

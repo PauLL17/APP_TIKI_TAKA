@@ -8,8 +8,9 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
 
 public class AboutActivity extends BaseActivity {
 

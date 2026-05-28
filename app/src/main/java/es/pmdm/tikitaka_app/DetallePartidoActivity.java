@@ -35,10 +35,14 @@ import es.pmdm.tikitaka_app.modelos.Gol;
 import es.pmdm.tikitaka_app.modelos.Jugador;
 import es.pmdm.tikitaka_app.modelos.Partido;
 import es.pmdm.tikitaka_app.modelos.Tarjeta;
+import es.pmdm.tikitaka_app.utilidades.BaseActivity;
+import es.pmdm.tikitaka_app.utilidades.SessionManager;
+import es.pmdm.tikitaka_app.utilidades.ToastPersonalizado;
+import es.pmdm.tikitaka_app.utilidades.WebSocketManager;
 
 public class DetallePartidoActivity extends BaseActivity {
 
-    private TextView tvCompeticion, tvEquipoLocal, tvEquipoVisitante;
+    private TextView tvEquipoLocal, tvEquipoVisitante;
     private TextView tvGolesLocal, tvGolesVisitante, tvMinuto;
     private TextView tvNombreEquipoLocal, tvNombreEquipoVisitante;
     private View rowPosesion, rowTiros, rowTirosPuerta, rowCorners, rowFaltas;
@@ -70,7 +74,6 @@ public class DetallePartidoActivity extends BaseActivity {
     }
 
     private void initViews() {
-        tvCompeticion           = findViewById(R.id.tvCompeticion);
         tvEquipoLocal           = findViewById(R.id.tvEquipoLocal);
         tvEquipoVisitante       = findViewById(R.id.tvEquipoVisitante);
         tvGolesLocal            = findViewById(R.id.tvGolesLocal);
